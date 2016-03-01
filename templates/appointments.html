@@ -1,0 +1,115 @@
+<!-- nav bar links  -->
+<!-- <script src='accordionAnimation.js'></script> -->
+<ul class="header">
+  <li class='logo pull-left'><a href="#/home">Brew4Two <span class="fa fa-coffee"></span></a></li>
+  <li class="pull-right links"><a href="#" ng-click='signout()'>logout</a></li>
+  <li class="pull-right links"><a href="#/appointments"> dates</a></li>
+</ul>
+
+<!-- page header -->
+<!-- page load fetches ALL appointments and filters out appts specific to user in the controller -->
+<div class="container appointmentsTable">
+  <div class="appointmentsTableHeader">
+    <h1 ng-init="filterAppointments()" class="appointmentsTableTitle">Appointments</h1>
+  </div>
+
+    <!-- loop over confirmed appointments (appts that user is either the host or guest and both parties have confirmed) -->
+    <h1 class="appointmentsTableSubTitle">Confirmed</h1>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Guest Email</th>
+          <th>Location</th>
+          <th>Address</th>
+          <th>Day</th>
+          <th>Time</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr ng-repeat="confirmAppt in confirmed">
+          <td>{{confirmAppt.acceptedGuest}}</td>
+          <td>{{confirmAppt.shop.name}}</td>
+          <td>{{confirmAppt.shop.formatted_address}}</td>
+          <td>{{moment().format(confirmAppt.day)}}</td>
+          <td>{{confirmAppt.time}}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- // loop over hosted appointments (appts that user has created) -->
+    <h1 class="appointmentsTableSubTitle">Hosting</h1>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>First</th>
+          <th>Last</th>
+          <th>Location</th>
+          <th>Address</th>
+          <th>Day</th>
+          <th>Time</th>
+          <th>Guest</th>
+          <th>&nbsp</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr ng-repeat="hostAppt in hosting">
+          <td>{{hostAppt.firstName}}</td>
+          <td>{{hostAppt.lastName}}</td>
+          <td>{{hostAppt.shop.name}}</td>
+          <td>{{hostAppt.shop.formatted_address}}</td>
+          <td>{{hostAppt.day.split('T')[0]}}</td>
+          <td>{{hostAppt.time}}</td>
+          <td>
+            <ul ng-repeat="guest in hostAppt.guests track by $index">
+              <span>{{ guest }}
+                <br>
+                <div class="acceptDenyButton">
+                  <button class="accept" ng-click="accepted(hostAppt, guest)">Yes</button>
+                  <button class="deny" ng-click="denied(hostAppt, guest)">No</button>
+                </div>
+              </span>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- <div>
+    <h3>{{hostAppt.day}}</h3>
+  </div> -->
+
+  <!-- // loop over requested appointments (appts that user has requested to join but is not hosting) -->
+  <h1 class="appointmentsTableSubTitle">Requested</h1>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Host First</th>
+        <th>Host Last</th>
+        <th>Location</th>
+        <th>Address</th>
+        <th>Day</th>
+        <th>Time</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr ng-repeat="requestAppt in requested">
+        <td>{{requestAppt.firstName}}</td>
+        <td>{{requestAppt.lastName}}</td>
+        <td>{{requestAppt.shop.name}}</td>
+        <td>{{requestAppt.shop.formatted_address}}</td>
+        <td>{{requestAppt.day.split('T')[0]}}</td>
+        <td>{{requestAppt.time}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
+<!-- <div>
+<h3>{{requestAppt.time}}</h3>
+</div> -->
+
+</div>
