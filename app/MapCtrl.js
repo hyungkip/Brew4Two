@@ -102,7 +102,7 @@ angular.module('brew.map', ['ui.bootstrap.datetimepicker'])
         google.maps.event.addListener(map, 'dragend', function() {
           console.log('drag ended');
           console.log(map.center.lat());
-          var newLng = map.center.lng() - '.024';
+          var newLng = map.center.lng() + .03;
           var newCenter = {lat: map.center.lat(), lng: newLng};
           service.textSearch({
             location: newCenter,
@@ -132,7 +132,7 @@ angular.module('brew.map', ['ui.bootstrap.datetimepicker'])
       }, callback);
 
       google.maps.event.addListener(map, 'dragend', function() {
-        var newLng = map.center.lng() - '.024';
+        var newLng = map.center.lng() + .03;
         var newCenter = {lat: map.center.lat(), lng: newLng};
         service.textSearch({
           location: newCenter,
