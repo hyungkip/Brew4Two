@@ -4,14 +4,14 @@
 
     <h1 class="text-center login-logo">Brew4Two</h1>
     <h2 class="text-center ">Signup</h2>
-    <form>
+    <form name="myForm" ng-submit="signup()">
       <div class="form-group col-md-6">
         <label>Username</label>
-        <input type="text" class="form-control" ng-model="newUser.username">
+        <input type="text" class="form-control" ng-model="newUser.email">
       </div>
       <div class="form-group col-md-6">
         <label >Password</label>
-        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" ng-model="newUser.password">
+        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" ng-model="newUser.password"required>
       </div>
       <div class="form-group col-md-6">
         <label>First Name</label>
@@ -23,7 +23,7 @@
       </div>
       <div class="form-group col-md-6">
         <label >Email Address</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email" ng-model="newUser.email">
+        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email" ng-model="newUser.email" required>
       </div>
 
       <div class="form-group col-md-3">
@@ -154,7 +154,7 @@
         <input type="text" class="form-control" placeholder="photo url" ng-model="newUser.profilePicture">
       </div>
 
-        <button type="submit" ng-click="signup()" class="btn btn-md btn-block login-buttons">Submit</button>
+        <button type="submit" class="btn btn-md btn-block login-buttons" ng-disabled="myForm.$invalid">Submit</button>
 
     </form>
   </div>
