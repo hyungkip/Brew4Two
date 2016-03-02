@@ -49,38 +49,46 @@
     <table class="table">
       <thead>
         <tr>
-          <th>Guest Picture</th>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Guest Email</th>
           <th>Location</th>
           <th>Address</th>
           <th>Day</th>
           <th>Time</th>
-          <th>Accept or Deny</th>
+          <th>Guests</th>
         </tr>
       </thead>
 
       <tbody>
         <tr ng-repeat="hostAppt in hosting">
-          <td><img ng-src="{{hostAppt.profilePicture}}"/></td>
-          <td>{{hostAppt.firstName}}</td>
-          <td>{{hostAppt.lastName}}</td>
-          <td>placeholder email</td>
           <td>{{hostAppt.shop.name}}</td>
           <td>{{hostAppt.shop.formatted_address}}</td>
           <td>{{hostAppt.day.split('T')[0]}}</td>
           <td>{{hostAppt.time}}</td>
           <td>
-            <!-- <ul ng-repeat="guest in hostAppt.guests track by $index">
-              <span>{{ guest }}
-                <br> -->
-                <div class="acceptDenyButton">
-                  <button class="accept" ng-click="accepted(hostAppt, guest)">Yes</button>
-                  <button class="deny" ng-click="denied(hostAppt, guest)">No</button>
-                </div>
-              <!-- </span>
-            </ul> -->
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Guest Picture</th>
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                  <th>email</th>
+                  <th>Accept/Deny Request</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="guest in hostAppt.guests track by $index">
+                  <td><img ng-src="{{guest.profilePicture}}"/></td>
+                  <td>{{guest.firstName}}</td>
+                  <td>{{guest.lastName}}</td>
+                  <td>{{guest.email}}</td>
+                  <td>
+                    <div class="acceptDenyButton">
+                    <button class="accept" ng-click="accepted(hostAppt, guest)">Yes</button>
+                    <button class="deny" ng-click="denied(hostAppt, guest)">No</button>
+                  </div>
+                </td>
+                </tr>
+              </tbody>
+            </table>
           </td>
         </tr>
       </tbody>
