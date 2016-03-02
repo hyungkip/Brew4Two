@@ -78,16 +78,16 @@ module.exports = {
     var appointment = req.body.appointment;
     var guestsArr = appointment.guests;
 
-    if(_.indexOf(username, guestsArr) === -1) {
-      res.send(true);
-    } else {
+    // if(_.indexOf(username, guestsArr) === -1) {
+    //   res.send(true);
+    // } else {
       db.users.find({username: username}, function(err, userData) {
-        db.appointments.update({time: appointment.time}, { $set: { appointmentStatus: 'pending' }, $push: { guests: userData } }, function(){
-          console.log(appointment.guests);
+
+        db.appointments.update({time: appointment.time}, { $set: { appointmentStatus: 'pending' }, $pushAll: { guests: userData } }, function(){
           res.send(false);
         });
       });
-    }
+    // }
   },
 
   fetchDashboardData: function() {
