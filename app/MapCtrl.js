@@ -7,6 +7,8 @@ angular.module('brew.map', ['ui.bootstrap.datetimepicker'])
   $scope.coffeeShops = [];
   $scope.hasLocation = false;
 
+  var markers = [];
+
 // creates markers to designate coffee shops
   function createMarker(place) {
     var placeLoc = place.geometry.location;
@@ -14,6 +16,7 @@ angular.module('brew.map', ['ui.bootstrap.datetimepicker'])
       map: map,
       position: place.geometry.location
     });
+    markers.push(marker);
     var photo;
     var openNow;
 
@@ -52,6 +55,13 @@ angular.module('brew.map', ['ui.bootstrap.datetimepicker'])
     if (status === google.maps.places.PlacesServiceStatus.OK) {
       // clears the previous results
       $scope.coffeeShops = [];
+      // clears all previous markers
+
+      for (var i = 0; i < markers.length; i++) {
+        markers[i].setMap(null);
+        markers[i] = null;
+      }
+      markers = [];
 
       for (var i = 0; i < results.length; i++) {
         createMarker(results[i]);
@@ -102,8 +112,6 @@ angular.module('brew.map', ['ui.bootstrap.datetimepicker'])
 
 
         google.maps.event.addListener(map, 'dragend', function() {
-          console.log('drag ended');
-          console.log(map.center.lat());
           var newLng = map.center.lng() + .03;
           var newCenter = {lat: map.center.lat(), lng: newLng};
           service.textSearch({
