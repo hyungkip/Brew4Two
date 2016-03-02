@@ -98,10 +98,13 @@ app.post('/sendJoinRequest', function(req, res){
   var appointment = req.body.appointment;
   var guestsArr = appointment.guests;
 
+  //attempting to add the entire user object to the appointment, as opposed to just the email
 // if no guests in the guests array, add current user's email into the guest array
   if(!guestsArr.length){
-    db.appointments.update({time: appointment.time}, { $set: { appointmentStatus: 'pending' }, $push: { guests: email } }, function(){
-      res.send(false);
+    db.users.find(currentUserId, function(err, userData) {
+      db.appointments.update({time: appointment.time}, { $set: { appointmentStatus: 'pending' }, $push: { guests: userData } }, function(){
+        res.send(false);
+      });
     });
   }
 
