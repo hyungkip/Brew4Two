@@ -3,23 +3,20 @@ angular.module('brew.auth', [])
 .controller('AuthCtrl', function($scope, $window, $location, $http, Auth){
 
   // authenticates by checking if there is a token
-  $scope.isAuth = function() {
+  $scope.isAuth = function(){
     return Boolean($window.localStorage.getItem('com.brewed'));
   };
 
   // post request to server and sends user info taken from the signup page's ng-model
-  $scope.signup = function() {
-    $http.post('/signup', $scope.newUser).success(function(response) {
-      if (response.isValid) {
-        $location.path('/home');
-      } else {
+  $scope.signup = function(){
+    $http.post('/signup', $scope.newUser).success(function(response){
       $location.path('/signin');
-      }
     });
   };
 
   // post request to server and sends over user info taken from the singin page's ng-model
   $scope.signin = function(){
+
     $http.post('/signin', $scope.user).success(function(response){
       // if a token comes back, redirect to home
       if(response){
@@ -34,7 +31,7 @@ angular.module('brew.auth', [])
   };
 
   // removes token when logout is clicked
-  $scope.signout = function() {
+  $scope.signout = function(){
     $window.localStorage.removeItem('com.brewed');
     $location.path('/home');
   };

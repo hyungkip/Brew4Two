@@ -4,17 +4,9 @@ var bodyParser     = require('body-parser');
 var partial = require('express-partials');
 var jwt = require('jwt-simple');
 var _ = require('underscore');
-var bcrypt = require('bcrypt-nodejs');
 
 // mongo database (database name = brewfortwo, tables = users, appointments)
-if (process.env.MONGOLAB_URI) {
-  var db = mongojs(process.env.MONGOLAB_URI, ['users', 'appointments']);
-} else {
-  // use local mongodb
-  var db = mongojs('brewfortwo', ['users', 'appointments']);
-}
-
-
+var db = mongojs(process.env.MONGOLAB_URI, ['users', 'appointments']);
 var app = express();
 
 app.use(express.static(__dirname+'/'));
@@ -135,6 +127,7 @@ app.get('/fetchAppointmentsDashboardData', function(req, res){
 
 // posts the user's info in the users table
 app.post('/signup', function(req,res){
+<<<<<<< 1e2c4dcb3663f7cc0545ac952107966c7aecf3ac
   var password = req.body.password;
   var username = req.body.username;
 
@@ -151,6 +144,10 @@ app.post('/signup', function(req,res){
       });
     }
     else {
+=======
+  db.users.insert(req.body, function(err, doc){
+    if(err){
+>>>>>>> [feature] implements log redirection
       console.log(err);
     }
   });
@@ -169,25 +166,32 @@ app.post('/signin', function(req, res){
   var username = req.body.username;
   var password = req.body.password;
 
+<<<<<<< 1e2c4dcb3663f7cc0545ac952107966c7aecf3ac
   db.users.find({username: username}, function(err, exists){
+=======
+  db.users.find({email:email, password: password}, function(err, exists){
+>>>>>>> [feature] implements log redirection
     if(!exists.length){
       res.send(false);
     }
 
     else {
+<<<<<<< 1e2c4dcb3663f7cc0545ac952107966c7aecf3ac
       if(bcrypt.compareSync( password, exists[0].password)){
         var payload = { username: username, password: password};
         var secret = 'brewed';
 
         // encode token
         var token = jwt.encode(payload, secret);
+=======
+      var payload = { email: email, password: password};
+      var secret = 'brewed';
+>>>>>>> [feature] implements log redirection
 
-        res.send(token);
-      }
-      else{
-        res.send(false);
-      }
+      // encode token
+      var token = jwt.encode(payload, secret);
 
+      res.send(token);
     }
   });
 });
