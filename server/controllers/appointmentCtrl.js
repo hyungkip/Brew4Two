@@ -96,13 +96,13 @@ module.exports = {
     });
   },
 
-  acceptAppt: function() {
+  acceptAppt: function(req, res) {
     db.appointments.update({time: req.body.time}, { $set: { appointmentStatus: 'scheduled', guests: [], acceptedGuest: req.body.username }}, function(err, appt){
       res.send(true);
     });
   },
 
-  denyAppt: function() {
+  denyAppt: function(req, res) {
     db.appointments.update({time: req.body.time}, {appointmentStatus: 'pending'}, { $pullAll: { guests: [req.body.username] } }, function(err, appt){
       res.send(true);
     });
