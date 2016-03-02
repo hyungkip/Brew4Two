@@ -1,28 +1,42 @@
 angular.module('brew.cafelist', [])
 
-.controller('cafeListCtrl', ['$scope', '$http', '$window', '$location', function($scope, $http, $window, $location){
-  $scope.newAppointment = {};
-  $scope.selected = false;
-  $scope.creatingAppointment = true;
+.controller('cafeListCtrl', [
+  '$scope',
+  '$http',
+  '$window',
+  '$location',
+  function($scope, $http, $window, $location) {
+    $scope.newAppointment = {};
+    $scope.selected = false;
+    $scope.creatingAppointment = true;
 
-  // shows available coffee shop appointments in the left sidebar
-  $scope.toggleCoffeeShopAppointments = function(shopId){
-    $scope.selected = !$scope.selected;
-    $http.post('/getAppointments', { id: shopId }).success(function(res){
-      $scope.appointmentList = res;
-    });
-  };
+    $scope.mouseOn = function(shopId) {
+      // console.log('hovered over shopId: ', shopId);
+      $scope.highlightMarker(shopId);
+    };
+    $scope.mouseOff = function(shopId) {
+      // console.log('hovered over shopId: ', shopId);
+      $scope.unHighlightMarker(shopId);
+    };
 
-  // filter returns the appointmentStatus for everything except 'scheduled' ones
-  // this is used to only show appointment statuses of null and pending handled in the ng-filter
-  $scope.statusFilter = function(apptStat){
-    if(apptStat !== 'scheduled'){
-      return apptStat;
-    }
-  };
+    // shows available coffee shop appointments in the left sidebar
+    $scope.toggleCoffeeShopAppointments = function(shopId){
+      $scope.selected = !$scope.selected;
+      $http.post('/getAppointments', { id: shopId }).success(function(res){
+        $scope.appointmentList = res;
+      });
+    };
+
+    // filter returns the appointmentStatus for everything except 'scheduled' ones
+    // this is used to only show appointment statuses of null and pending handled in the ng-filter
+    $scope.statusFilter = function(apptStat){
+      if(apptStat !== 'scheduled'){
+        return apptStat;
+      }
+    };
 
 
-  $scope.createNewAppointment = function(shopId){
+    $scope.createNewAppointment = function(shopId){
     if($scope.selected === false){
       $scope.toggleCoffeeShopAppointments(shopId);
     }
