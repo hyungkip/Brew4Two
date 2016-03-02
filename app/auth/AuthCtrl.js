@@ -16,7 +16,6 @@ angular.module('brew.auth', [])
 
   // post request to server and sends over user info taken from the singin page's ng-model
   $scope.signin = function(){
-    Auth.username_log = $scope.user.username
     $http.post('/signin', $scope.user).success(function(response){
       // if a token comes back, redirect to home
       if(response){
@@ -25,7 +24,7 @@ angular.module('brew.auth', [])
       }
       // if no token, redirect to signin
       else {
-        sweetAlert("Oops...", "Email or password is incorrect", "error");
+        sweetAlert("Oops...", "Username or password is incorrect", "error");
       }
     });
   };
