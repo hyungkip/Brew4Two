@@ -20,6 +20,8 @@
       <thead>
         <tr>
           <th>Guest Picture</th>
+          <th>First Name</th>
+          <th>Last Name</th>
           <th>Guest Email</th>
           <th>Location</th>
           <th>Address</th>
@@ -30,7 +32,9 @@
 
       <tbody>
         <tr ng-repeat="confirmAppt in confirmed">
-          <td>{{confirmAppt.profilePicture}}</td>
+          <td><img ng-src="{{confirmAppt.profilePicture}}"/></td>
+          <td>{{confirmAppt.firstName}}</td>
+          <td>{{confirmAppt.lastName}}</td>
           <td>{{confirmAppt.acceptedGuest}}</td>
           <td>{{confirmAppt.shop.name}}</td>
           <td>{{confirmAppt.shop.formatted_address}}</td>

@@ -67,6 +67,7 @@ app.post('/filterAppointments', function(req, res){
 
 
   db.appointments.find({}, function(err, doc){
+    console.log(doc);
     for( var i = 0; i < doc.length; i++ ){
       // if user's email is in the appointments' "email" property, user is the host
       // case: user is a host or a guest and appointment status is scheduled = confirmed appointment
@@ -116,6 +117,7 @@ app.post('/sendJoinRequest', function(req, res){
         res.send(true);
       }
     }
+
 
     // if user's email is not in the guest array, respond with false
     db.appointments.update({time: appointment.time}, { $set: { appointmentStatus: 'pending' }, $push: { guests: email } });
