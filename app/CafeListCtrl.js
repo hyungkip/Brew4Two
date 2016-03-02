@@ -10,9 +10,13 @@ angular.module('brew.cafelist', [])
     $scope.selected = false;
     $scope.creatingAppointment = true;
 
-    $scope.hovered = function(shopId) {
+    $scope.mouseOn = function(shopId) {
       // console.log('hovered over shopId: ', shopId);
       $scope.highlightMarker(shopId);
+    };
+    $scope.mouseOff = function(shopId) {
+      // console.log('hovered over shopId: ', shopId);
+      $scope.unHighlightMarker(shopId);
     };
 
     // shows available coffee shop appointments in the left sidebar

@@ -13,7 +13,7 @@
   <div class="cafeList">
 
     <div ng-controller="cafeListCtrl" ng-repeat="shop in coffeeShops">
-      <div class="cafe" ng-mouseover="hovered(shop.id)">
+      <div class="cafe" ng-mouseover="mouseOn(shop.id)" ng-mouseleave="mouseOff(shop.id)">
         <div ng-click="toggleCoffeeShopAppointments(shop.id)" class="cafePreviewClick">
           <img class="coffeeShopImage" src={{shop.shopImage}}>
           <div class='coffeeShopInfo'>

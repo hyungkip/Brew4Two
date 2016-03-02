@@ -10,11 +10,17 @@ angular.module('brew.map', ['ui.bootstrap.datetimepicker'])
   var markers = [];
 
   $scope.highlightMarker = function(shopId) {
-    // console.log('called highlightMarker on shopId: ', shopId);
-    // console.log(markers);
     for (var i=0; i<markers.length; i++) {
       if (shopId === markers[i].id) {
-        console.log('found shopId: ', markers[i].id);
+        markers[i].setAnimation(google.maps.Animation.BOUNCE);
+      }
+    }
+  }
+
+  $scope.unHighlightMarker = function(shopId) {
+    for (var i=0; i<markers.length; i++) {
+      if (shopId === markers[i].id) {
+        markers[i].setAnimation(null);
       }
     }
   }
