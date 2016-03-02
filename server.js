@@ -153,7 +153,6 @@ app.get('/signin', function(req, res){
 // authenticates user's email in the database and assigns token if exists
 // access to "appointments" page is handled in the controller
 app.post('/signin', function(req, res){
-  console.log('HELLO00');
   var email = req.body.email;
   var password = req.body.password;
 
@@ -163,10 +162,8 @@ app.post('/signin', function(req, res){
     }
 
     else {
-      console.log('YOYOYOYOYYOYOYOYOY IN THE ELSE00');
-      console.log(exists[0].password);
       if(bcrypt.compareSync(password, exists[0].password)){
-        var payload = { email: email, password: password };
+        var payload = { email: email, password: password};
         var secret = 'brewed';
 
         // encode token
