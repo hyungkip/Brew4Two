@@ -72,6 +72,7 @@ module.exports = {
   },
 
   joinAppt: function(req, res) {
+    console.log('inside join appt in appointment controller');
     var currentUserId = req.body.token;
     var secret = "brewed";
     var username = jwt.decode(currentUserId, secret).username;
@@ -81,7 +82,7 @@ module.exports = {
     //attempting to add the entire user object to the appointment, as opposed to just the username
     // if no guests in the guests array, add current user's username into the guest array
     if(!guestsArr.length){
-      db.users.find(currentUserId, function(err, userData) {
+      db.users.find({username: username}, function(err, userData) {
         db.appointments.update({time: appointment.time}, { $set: { appointmentStatus: 'pending' }, $push: { guests: userData } }, function(){
           res.send(false);
         });
