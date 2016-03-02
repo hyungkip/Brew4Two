@@ -51,7 +51,7 @@ angular.module('brew.map', ['ui.bootstrap.datetimepicker'])
   }
 
   // callback that is passed to the map in order to generate markers on coffee shops
-  function callback(results, status) {
+  function listResults(results, status) {
     if (status === google.maps.places.PlacesServiceStatus.OK) {
       // clears the previous results
       $scope.coffeeShops = [];
@@ -140,7 +140,7 @@ angular.module('brew.map', ['ui.bootstrap.datetimepicker'])
       radius: 2000,
       types: ['cafe', 'restaurant', 'food', 'store', 'establishment', 'meal_takeaway', 'point_of_interest'],
       query: ['coffee']
-    }, callback);
+    }, listResults);
   }
 
 // initializes the map
