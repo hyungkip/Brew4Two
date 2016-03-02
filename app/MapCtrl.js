@@ -50,6 +50,8 @@ angular.module('brew.map', ['ui.bootstrap.datetimepicker'])
 // callback that is passed to the map in order to generate markers on coffee shops
   function callback(results, status) {
     if (status === google.maps.places.PlacesServiceStatus.OK) {
+      // clears the previous results
+      $scope.coffeeShops = [];
 
       for (var i = 0; i < results.length; i++) {
         createMarker(results[i]);
@@ -97,6 +99,20 @@ angular.module('brew.map', ['ui.bootstrap.datetimepicker'])
           types: ['cafe', 'restaurant', 'food', 'store', 'establishment', 'meal_takeaway', 'point_of_interest'],
           query: ['coffee']
         }, callback);
+
+
+        google.maps.event.addListener(map, 'dragend', function() {
+          console.log('drag ended');
+          console.log(map.center.lat());
+          var newLng = map.center.lng() + .03;
+          var newCenter = {lat: map.center.lat(), lng: newLng};
+          service.textSearch({
+            location: newCenter,
+            radius: 2000,
+            types: ['cafe', 'restaurant', 'food', 'store', 'establishment', 'meal_takeaway', 'point_of_interest'],
+            query: ['coffee']
+          }, callback);
+        });
       });
     } else {
       var santaMonica = {lat: 43.8833, lng: -79.2500};
@@ -116,6 +132,17 @@ angular.module('brew.map', ['ui.bootstrap.datetimepicker'])
         types: ['cafe', 'restaurant', 'food', 'store', 'establishment', 'meal_takeaway', 'point_of_interest'],
         query: ['coffee']
       }, callback);
+
+      google.maps.event.addListener(map, 'dragend', function() {
+        var newLng = map.center.lng() + .03;
+        var newCenter = {lat: map.center.lat(), lng: newLng};
+        service.textSearch({
+          location: newCenter,
+          radius: 2000,
+          types: ['cafe', 'restaurant', 'food', 'store', 'establishment', 'meal_takeaway', 'point_of_interest'],
+          query: ['coffee']
+        }, callback);
+      });
     }
   }
 
