@@ -131,13 +131,21 @@ app.get('/fetchAppointmentsDashboardData', function(req, res){
 // posts the user's info in the users table
 app.post('/signup', function(req,res){
   var password = req.body.password;
+  var username = req.body.username;
 
   var salt = bcrypt.genSaltSync(10);
   var hash = bcrypt.hashSync(password, salt);
   req.body.password = hash;
 
-  db.users.insert(req.body, function(err, doc){
-    if(err){
+  db.users.find({username: username}, function(err, exists){
+    if(!exists.length){
+      db.users.insert(req.body, function(err, doc){
+        if(err){
+          console.log(err);
+        }
+      });
+    }
+    else {
       console.log(err);
     }
   });
@@ -153,17 +161,17 @@ app.get('/signin', function(req, res){
 // authenticates user's email in the database and assigns token if exists
 // access to "appointments" page is handled in the controller
 app.post('/signin', function(req, res){
-  var email = req.body.email;
+  var username = req.body.username;
   var password = req.body.password;
 
-  db.users.find({email:email}, function(err, exists){
+  db.users.find({username: username}, function(err, exists){
     if(!exists.length){
       res.send(false);
     }
 
     else {
-      if(bcrypt.compareSync(password, exists[0].password)){
-        var payload = { email: email, password: password};
+      if(bcrypt.compareSync( password, exists[0].password)){
+        var payload = { username: username, password: password};
         var secret = 'brewed';
 
         // encode token
