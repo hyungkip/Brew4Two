@@ -1,3 +1,4 @@
+var mongojs = require('mongojs');
 var db = mongojs('brewfortwo', ['users', 'appointments']);
 
 if (process.env.MONGOLAB_URI) {

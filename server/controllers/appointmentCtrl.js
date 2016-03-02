@@ -1,5 +1,6 @@
 var jwt = require('jwt-simple');
 var db = require('../db/database.js');
+var _ = require('underscore');
 
 module.exports = {
   createAppt: function(req, res) {
