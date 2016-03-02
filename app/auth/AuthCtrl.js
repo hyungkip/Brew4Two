@@ -1,6 +1,6 @@
 angular.module('brew.auth', [])
 
-.controller('AuthCtrl', function($scope, $window, $location, $http){
+.controller('AuthCtrl', function($scope, $window, $location, $http, Auth){
 
   // authenticates by checking if there is a token
   $scope.isAuth = function(){
@@ -16,7 +16,7 @@ angular.module('brew.auth', [])
 
   // post request to server and sends over user info taken from the singin page's ng-model
   $scope.signin = function(){
-    console.log($scope.user);
+    Auth.username_log = $scope.user.username
     $http.post('/signin', $scope.user).success(function(response){
       // if a token comes back, redirect to home
       if(response){

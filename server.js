@@ -26,10 +26,15 @@ app.post('/createAppointment', function(req, res){
   // decodes user token and fetches user first and last name in users table
   var token = req.body.host_id;
   var secret = "brewed";
+  //decoded = {username: 'username', password: 'password'}
   var decoded = jwt.decode(token, secret);
 
+  console.log("INSIDE CREATEAPPOINTMENT", decoded);
+
+
   // adds the below properties onto the request to post to appointments table
-  db.users.find(decoded, function(err, appt){
+  db.users.find({ username: decoded.username}, function(err, appt){
+    console.log("INSIDE USERS.FIND", appt);
     req.body.firstName = appt[0].first;
     req.body.lastName = appt[0].last;
     req.body.email = decoded.email;
