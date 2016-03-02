@@ -12,9 +12,9 @@ module.exports = {
     var hash = bcrypt.hashSync(password, salt);
     req.body.password = hash;
 
-    db.users.find({username: username}, function(err, exists){
+    db.users.find({username: username}, function(err, exists) {
       if(!exists.length){
-        db.users.insert(req.body, function(err, doc){
+        db.users.insert(req.body, function(err, doc) {
           if(err){
             console.log(err);
           }
@@ -36,7 +36,7 @@ module.exports = {
     var username = req.body.username;
     var password = req.body.password;
 
-    db.users.find({username: username}, function(err, exists){
+    db.users.find({username: username}, function(err, exists) {
       if(!exists.length){
         res.send(false);
       }
