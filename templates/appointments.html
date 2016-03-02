@@ -32,10 +32,10 @@
 
     <tbody>
       <tr ng-repeat="confirmAppt in confirmed">
-        <td><img ng-src="{{confirmAppt.profilePicture}}"/></td>
-        <td>{{confirmAppt.firstName}}</td>
-        <td>{{confirmAppt.lastName}}</td>
-        <td>{{confirmAppt.acceptedGuest}}</td>
+        <td><img ng-src="{{confirmAppt.acceptedGuest.profilePicture}}"/></td>
+        <td>{{confirmAppt.acceptedGuest.first}}</td>
+        <td>{{confirmAppt.acceptedGuest.last}}</td>
+        <td>{{confirmAppt.acceptedGuest.email}}</td>
         <td>{{confirmAppt.shop.name}}</td>
         <td>{{confirmAppt.shop.formatted_address}}</td>
         <td>{{moment().format(confirmAppt.day)}}</td>
