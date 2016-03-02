@@ -58,10 +58,10 @@ angular.module('brew.cafelist', [])
       formatDateProperly();
 
       $http.post('/createAppointment', $scope.newAppointment).success(function(req, res){
-        $scope.newAppointment.firstName = res.firstName;
-        $scope.newAppointment.firstName = res.lastName;
-        $scope.newAppointment.profilePicture = res.profilePicture;
-        $scope.newAppointment.bio = res.bio;
+        // $scope.newAppointment.firstName = res.firstName;
+        // $scope.newAppointment.firstName = res.lastName;
+        // $scope.newAppointment.profilePicture = res.profilePicture;
+        // $scope.newAppointment.bio = res.bio;
         // $scope.toggleCoffeeShopAppointments();
         $http.post('/getAppointments', { id: shopId }).success(function(res){
           $scope.appointmentList = res;

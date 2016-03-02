@@ -14,12 +14,15 @@
   </div>
 
     <!-- loop over confirmed appointments (appts that user is either the host or guest and both parties have confirmed) -->
-    <h1 class="appointmentsTableSubTitle">Confirmed</h1>
+    <h1 class="appointmentsTableSubTitle">Guests Confirmed for my Appointments</h1>
 
     <table class="table">
       <thead>
         <tr>
-          <th>Guest Username</th>
+          <th>Guest Picture</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Guest Email</th>
           <th>Location</th>
           <th>Address</th>
           <th>Day</th>
@@ -29,6 +32,9 @@
 
       <tbody>
         <tr ng-repeat="confirmAppt in confirmed">
+          <td><img ng-src="{{confirmAppt.profilePicture}}"/></td>
+          <td>{{confirmAppt.firstName}}</td>
+          <td>{{confirmAppt.lastName}}</td>
           <td>{{confirmAppt.acceptedGuest}}</td>
           <td>{{confirmAppt.shop.name}}</td>
           <td>{{confirmAppt.shop.formatted_address}}</td>
@@ -39,10 +45,11 @@
     </table>
 
     <!-- // loop over hosted appointments (appts that user has created) -->
-    <h1 class="appointmentsTableSubTitle">Hosting</h1>
+    <h1 class="appointmentsTableSubTitle">Guests that Want to Join My Events</h1>
     <table class="table">
       <thead>
         <tr>
+          <th>Guest Picture</th>
           <th>First</th>
           <th>Last</th>
           <th>Location</th>
@@ -56,6 +63,7 @@
 
       <tbody>
         <tr ng-repeat="hostAppt in hosting">
+          <td><img ng-src="{{hostAppt.profilePicture}}"/></td>
           <td>{{hostAppt.firstName}}</td>
           <td>{{hostAppt.lastName}}</td>
           <td>{{hostAppt.shop.name}}</td>
@@ -63,15 +71,15 @@
           <td>{{hostAppt.day.split('T')[0]}}</td>
           <td>{{hostAppt.time}}</td>
           <td>
-            <ul ng-repeat="guest in hostAppt.guests track by $index">
+            <!-- <ul ng-repeat="guest in hostAppt.guests track by $index">
               <span>{{ guest }}
-                <br>
+                <br> -->
                 <div class="acceptDenyButton">
                   <button class="accept" ng-click="accepted(hostAppt, guest)">Yes</button>
                   <button class="deny" ng-click="denied(hostAppt, guest)">No</button>
                 </div>
-              </span>
-            </ul>
+              <!-- </span>
+            </ul> -->
           </td>
         </tr>
       </tbody>
@@ -82,10 +90,11 @@
   </div> -->
 
   <!-- // loop over requested appointments (appts that user has requested to join but is not hosting) -->
-  <h1 class="appointmentsTableSubTitle">Requested</h1>
+  <h1 class="appointmentsTableSubTitle">Appointments I Have Requested To Join</h1>
   <table class="table">
     <thead>
       <tr>
+        <th>Host Picture</th>
         <th>Host First</th>
         <th>Host Last</th>
         <th>Location</th>
@@ -97,6 +106,7 @@
 
     <tbody>
       <tr ng-repeat="requestAppt in requested">
+        <td>{{requestAppt.profilePicture}}</td>
         <td>{{requestAppt.firstName}}</td>
         <td>{{requestAppt.lastName}}</td>
         <td>{{requestAppt.shop.name}}</td>

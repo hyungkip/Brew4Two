@@ -8,7 +8,9 @@
   height: 100%;
   width: 100%;
 }*/
-
+img{
+  width: 40px;
+}
 .header {
   background-color: #F25F5C;
   width: 100%;
