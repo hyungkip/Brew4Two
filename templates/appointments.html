@@ -59,7 +59,7 @@
 
       <tbody>
         <tr ng-repeat="hostAppt in hosting">
-          <td>{{hostAppt.profilePicture}}</td>
+          <td><img ng-src="{{hostAppt.profilePicture}}"/></td>
           <td>{{hostAppt.firstName}}</td>
           <td>{{hostAppt.lastName}}</td>
           <td>{{hostAppt.shop.name}}</td>
@@ -67,15 +67,15 @@
           <td>{{hostAppt.day.split('T')[0]}}</td>
           <td>{{hostAppt.time}}</td>
           <td>
-            <ul ng-repeat="guest in hostAppt.guests track by $index">
+            <!-- <ul ng-repeat="guest in hostAppt.guests track by $index">
               <span>{{ guest }}
-                <br>
+                <br> -->
                 <div class="acceptDenyButton">
                   <button class="accept" ng-click="accepted(hostAppt, guest)">Yes</button>
                   <button class="deny" ng-click="denied(hostAppt, guest)">No</button>
                 </div>
-              </span>
-            </ul>
+              <!-- </span>
+            </ul> -->
           </td>
         </tr>
       </tbody>
