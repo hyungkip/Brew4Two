@@ -79,30 +79,35 @@ module.exports = {
     var appointment = req.body.appointment;
     var guestsArr = appointment.guests;
 
-    //attempting to add the entire user object to the appointment, as opposed to just the username
-    // if no guests in the guests array, add current user's username into the guest array
-    if(!guestsArr.length){
+    if(_.indexOf(username, guestsArr) === -1) {
+      res.send(true);
+    } else {
       db.users.find({username: username}, function(err, userData) {
+        console.log("user data being added when join event reqeust is sent ", userData);
         db.appointments.update({time: appointment.time}, { $set: { appointmentStatus: 'pending' }, $push: { guests: userData } }, function(){
           res.send(false);
         });
       });
     }
+    //attempting to add the entire user object to the appointment, as opposed to just the username
+    // if no guests in the guests array, add current user's username into the guest array
+    // if(!guestsArr.length){
+    // }
 
     // if guests array has items, loop throug hand check if user's username is in there
-    else {
-      for(var i = 0; i < guestsArr.length; i++){
-        // if user's username is in the guest array, respond with true
-        if(guestsArr[i] === username){
-          res.send(true);
-        }
-      }
-
-
-      // if user's username is not in the guest array, respond with false
-      db.appointments.update({time: appointment.time}, { $set: { appointmentStatus: 'pending' }, $push: { guests: username } });
-      res.send(false);
-    }
+    // else {
+    //   for(var i = 0; i < guestsArr.length; i++){
+    //     // if user's username is in the guest array, respond with true
+    //     if(guestsArr[i] === username){
+    //       res.send(true);
+    //     }
+    //   }
+    //
+    //
+    //   // if user's username is not in the guest array, respond with false
+    //   db.appointments.update({time: appointment.time}, { $set: { appointmentStatus: 'pending' }, $push: { guests: username } });
+    //   res.send(false);
+    // }
   },
 
   fetchDashboardData: function() {
