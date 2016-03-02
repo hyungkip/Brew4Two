@@ -3,14 +3,14 @@ angular.module('brew.appts', [])
 
   // removes token when logout is clicked
   $scope.signout = function(){
-    $window.localStorage.removeItem('com.brewed', function(){
+    $window.localStorage.removeItem('com.brewed', function() {
       $location.path('/signin');
     });
   };
 
   // clears the hosting appointments and re-invokes appointment filter when host accepts a guest
-  $scope.accepted = function(appt, guestUsername){
-    $http.post('/acceptAppt', {time: appt.time, username: guestUsername }).success(function(res){
+  $scope.accepted = function(appt, guestUsername) {
+    $http.post('/acceptAppt', {time: appt.time, username: guestUsername }).success(function(res) {
       if(res){
         $scope.hosting = [];
         $scope.filterAppointments();
@@ -19,8 +19,8 @@ angular.module('brew.appts', [])
   };
 
   // clears the hosting appointments and re-invokes appointment filter when host denies a guest
-  $scope.denied = function(appt, guestUsername){
-    $http.post('/denyAppt', {time: appt.time, username: guestUsername }).success(function(res){
+  $scope.denied = function(appt, guestUsername) {
+    $http.post('/denyAppt', {time: appt.time, username: guestUsername }).success(function(res) {
       if(res){
         $scope.hosting = [];
         $scope.filterAppointments();
@@ -29,7 +29,7 @@ angular.module('brew.appts', [])
   };
 
   // authenticates if a user is signed in before allowing access to 'appointments' page
-  $scope.navigateToAppointmentsDashboard = function(){
+  $scope.navigateToAppointmentsDashboard = function() {
     if($scope.isAuth()){
       $location.path('/appointments');
     }
@@ -40,16 +40,16 @@ angular.module('brew.appts', [])
 
   // fetches all appointments to display on the "appointments" page
   $scope.fetchAllAppointmentsForUser = function (token) {
-    $http.get('/fetchAppointmentsDashboardData').success(function(res){
+    $http.get('/fetchAppointmentsDashboardData').success(function(res) {
       $scope.allAppointments = res;
     });
   };
 
   // post request to server and sends the user's token to filter appointments on the server
   // controller is just assigning the arrays to their respective $scope variables
-  $scope.filterAppointments = function(){
+  $scope.filterAppointments = function() {
     var token = $window.localStorage.getItem('com.brewed');
-    $http.post('/filterAppointments', {token: token}).success(function(res){
+    $http.post('/filterAppointments', {token: token}).success(function(res) {
       $scope.confirmed = res.confirmed;
       $scope.hosting = res.hosting;
       $scope.requested = res.requested;
