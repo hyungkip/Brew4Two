@@ -50,14 +50,14 @@
       <thead>
         <tr>
           <th>Guest Picture</th>
-          <th>First</th>
-          <th>Last</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Guest Email</th>
           <th>Location</th>
           <th>Address</th>
           <th>Day</th>
           <th>Time</th>
-          <th>Guest</th>
-          <th>&nbsp</th>
+          <th>Accept or Deny</th>
         </tr>
       </thead>
 
@@ -95,8 +95,9 @@
     <thead>
       <tr>
         <th>Host Picture</th>
-        <th>Host First</th>
-        <th>Host Last</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Host Email</th>
         <th>Location</th>
         <th>Address</th>
         <th>Day</th>
@@ -109,6 +110,7 @@
         <td>{{requestAppt.profilePicture}}</td>
         <td>{{requestAppt.firstName}}</td>
         <td>{{requestAppt.lastName}}</td>
+        <td>{{requestAppt.email}}</td>
         <td>{{requestAppt.shop.name}}</td>
         <td>{{requestAppt.shop.formatted_address}}</td>
         <td>{{requestAppt.day.split('T')[0]}}</td>
