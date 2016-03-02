@@ -9,12 +9,24 @@ angular.module('brew.map', ['ui.bootstrap.datetimepicker'])
 
   var markers = [];
 
+  $scope.highlightMarker = function(shopId) {
+    // console.log('called highlightMarker on shopId: ', shopId);
+    // console.log(markers);
+    for (var i=0; i<markers.length; i++) {
+      if (shopId === markers[i].id) {
+        console.log('found shopId: ', markers[i].id);
+      }
+    }
+  }
+
   // creates markers to designate coffee shops
   function createMarker(place) {
+    // console.log(place);
     var placeLoc = place.geometry.location;
     var marker = new google.maps.Marker({
       map: map,
-      position: place.geometry.location
+      position: place.geometry.location,
+      id: place.id
     });
     markers.push(marker);
     var photo;
