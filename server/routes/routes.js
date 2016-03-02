@@ -6,7 +6,7 @@ var apptController = require('../controllers/appointmentCtrl.js');
 module.exports = function(app, express) {
   app.use(jsonParser);
 
-  app.use('/', express.static(__dirname + '../../app'));
+  app.use('/', express.static(__dirname + './../../'));
 
 //appointments controller
   app.post('/createAppointment', jsonParser, apptController.createAppt);

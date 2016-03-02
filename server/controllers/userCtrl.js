@@ -5,6 +5,7 @@ var db = require('../db/database.js');
 
 module.exports = {
   signup: function(req, res) {
+    console.log('inside userCtrl.signup');
     db.users.insert(req.body, function(err, doc) {
       if(err) {
         console.log(err);

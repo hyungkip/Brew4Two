@@ -3,6 +3,7 @@ var db = require('../db/database.js');
 var _ = require('underscore');
 
 module.exports = {
+
   createAppt: function(req, res) {
     // decodes user token and fetches user first and last name in users table
     var token = req.body.host_id;
@@ -78,7 +79,7 @@ module.exports = {
     var guestsArr = appointment.guests;
 
     //attempting to add the entire user object to the appointment, as opposed to just the email
-  // if no guests in the guests array, add current user's email into the guest array
+    // if no guests in the guests array, add current user's email into the guest array
     if(!guestsArr.length){
       db.users.find(currentUserId, function(err, userData) {
         db.appointments.update({time: appointment.time}, { $set: { appointmentStatus: 'pending' }, $push: { guests: userData } }, function(){
@@ -87,7 +88,7 @@ module.exports = {
       });
     }
 
-  // if guests array has items, loop throug hand check if user's email is in there
+    // if guests array has items, loop throug hand check if user's email is in there
     else {
       for(var i = 0; i < guestsArr.length; i++){
         // if user's email is in the guest array, respond with true
