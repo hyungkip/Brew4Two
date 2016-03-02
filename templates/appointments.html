@@ -22,7 +22,7 @@
           <th>Guest Picture</th>
           <th>First Name</th>
           <th>Last Name</th>
-          <th>Guest Username</th>
+          <th>Guest Email</th>
           <th>Location</th>
           <th>Address</th>
           <th>Day</th>
@@ -71,15 +71,17 @@
                   <th>First Name</th>
                   <th>Last Name</th>
                   <th>email</th>
+                  <th>Bio</th>
                   <th>Accept/Deny Request</th>
                 </tr>
               </thead>
               <tbody>
                 <tr ng-repeat="guest in hostAppt.guests track by $index">
-                  <td><img ng-src="{{guest.profilePicture}}"/></td>
-                  <td>{{guest.firstName}}</td>
-                  <td>{{guest.lastName}}</td>
-                  <td>{{guest.email}}</td>
+                  <td><img ng-src="{{guest[0].profilePicture}}"/></td>
+                  <td>{{guest[0].first}}</td>
+                  <td>{{guest[0].last}}</td>
+                  <td>{{guest[0].email}}</td>
+                  <td>{{guest[0].bio}}</td>
                   <td>
                     <div class="acceptDenyButton">
                     <button class="accept" ng-click="accepted(hostAppt, guest)">Yes</button>

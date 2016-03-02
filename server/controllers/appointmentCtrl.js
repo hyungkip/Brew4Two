@@ -72,7 +72,6 @@ module.exports = {
   },
 
   joinAppt: function(req, res) {
-    console.log('inside join appt in appointment controller');
     var currentUserId = req.body.token;
     var secret = "brewed";
     var username = jwt.decode(currentUserId, secret).username;
@@ -83,8 +82,8 @@ module.exports = {
       res.send(true);
     } else {
       db.users.find({username: username}, function(err, userData) {
-        console.log("user data being added when join event reqeust is sent ", userData);
         db.appointments.update({time: appointment.time}, { $set: { appointmentStatus: 'pending' }, $push: { guests: userData } }, function(){
+          console.log(appointment.guests);
           res.send(false);
         });
       });
