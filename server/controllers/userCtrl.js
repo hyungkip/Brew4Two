@@ -8,15 +8,12 @@ module.exports = {
     var password = req.body.password;
     var username = req.body.username;
 
-    var validObj = {isValid: false};
-
     var salt = bcrypt.genSaltSync(10);
     var hash = bcrypt.hashSync(password, salt);
     req.body.password = hash;
 
-    db.users.find({username: username}, function(found){
-      if(found){
-        res.send(validObj);
+    db.users.find({username: username}, function(err, exists){
+      if(!exists.length){
         db.users.insert(req.body, function(err, doc){
           if(err){
             console.log(err);

@@ -7,7 +7,7 @@
     <form name="myForm" ng-submit="signup()">
       <div class="form-group col-md-6">
         <label>Username</label>
-        <input type="text" class="form-control" ng-model="newUser.username">
+        <input type="text" class="form-control" ng-model="newUser.username" required>
       </div>
       <div class="form-group col-md-6">
         <label >Password</label>
@@ -23,7 +23,7 @@
       </div>
       <div class="form-group col-md-6">
         <label >Email Address</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email" ng-model="newUser.email" required>
+        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email" ng-model="newUser.email">
       </div>
 
       <div class="form-group col-md-3">
