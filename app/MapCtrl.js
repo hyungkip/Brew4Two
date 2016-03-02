@@ -7,36 +7,39 @@ angular.module('brew.map', ['ui.bootstrap.datetimepicker'])
   $scope.coffeeShops = [];
   $scope.hasLocation = false;
 
-// creates markers to designate coffee shops
+  var markers = [];
+
+  // creates markers to designate coffee shops
   function createMarker(place) {
     var placeLoc = place.geometry.location;
     var marker = new google.maps.Marker({
       map: map,
       position: place.geometry.location
     });
+    markers.push(marker);
     var photo;
     var openNow;
 
-    if(place.photos){
+    if (place.photos) {
       photo = place.photos[0].getUrl({'maxWidth': 500, 'maxHeight': 500});
     } else {
       photo = place.icon;
     }
 
-    if(place.opening_hours){
-      if(place.opening_hours.open_now) {
+    if (place.opening_hours) {
+      if (place.opening_hours.open_now) {
         openNow = 'Open';
       } else {
         openNow = 'Closed';
       }
-    }else{
+    } else {
       openNow = 'Unsure';
     }
 
-// creates html element in infowindow
+    // creates html element in infowindow
     var content = '<img class="showhover"src="'+photo+'">' + '<h2>' + place.name + '</h2>'+ '<p>' + place.formatted_address + '</p>' + '<p class="opening-hours">' + openNow + '</p>' + '<p>' + 'Rating: ' + place.rating + '</p>';
 
-// infowindow shows on click
+    // infowindow shows on click
     google.maps.event.addListener(marker, 'click', function() {
       infowindow.setContent(content);
       infowindow.open(map, marker);
@@ -47,11 +50,18 @@ angular.module('brew.map', ['ui.bootstrap.datetimepicker'])
     }
   }
 
-// callback that is passed to the map in order to generate markers on coffee shops
+  // callback that is passed to the map in order to generate markers on coffee shops
   function callback(results, status) {
     if (status === google.maps.places.PlacesServiceStatus.OK) {
       // clears the previous results
       $scope.coffeeShops = [];
+      
+      // clears all previous markers
+      for (var i = 0; i < markers.length; i++) {
+        markers[i].setMap(null);
+        markers[i] = null;
+      }
+      markers = [];
 
       for (var i = 0; i < results.length; i++) {
         createMarker(results[i]);
@@ -66,7 +76,7 @@ angular.module('brew.map', ['ui.bootstrap.datetimepicker'])
     }
   }
 
-// creates the coffee shop map
+  // creates the coffee shop map
   function initMap() {
     if (navigator.geolocation) {
       var thislat;
@@ -83,35 +93,23 @@ angular.module('brew.map', ['ui.bootstrap.datetimepicker'])
         }
 
         $scope.noLocation = false;
-        var santaMonica = {lat: thislat, lng: thislng};
-        santaMonica.lng = santaMonica.lng - '.024';
+        var thisLoc = {lat: thislat, lng: thislng};
+        thisLoc.lng = thisLoc.lng - '.024';
         map = new google.maps.Map(document.getElementById('map'), {
-          center: santaMonica,
+          center: thisLoc,
           zoom: 14
         });
 
         infowindow = new google.maps.InfoWindow();
 
         var service = new google.maps.places.PlacesService(map);
-        service.textSearch({
-          location: santaMonica,
-          radius: 2000,
-          types: ['cafe', 'restaurant', 'food', 'store', 'establishment', 'meal_takeaway', 'point_of_interest'],
-          query: ['coffee']
-        }, callback);
-
+        
+        searchCoffeeShops(service, thisLoc);
 
         google.maps.event.addListener(map, 'dragend', function() {
-          console.log('drag ended');
-          console.log(map.center.lat());
           var newLng = map.center.lng() + .03;
           var newCenter = {lat: map.center.lat(), lng: newLng};
-          service.textSearch({
-            location: newCenter,
-            radius: 2000,
-            types: ['cafe', 'restaurant', 'food', 'store', 'establishment', 'meal_takeaway', 'point_of_interest'],
-            query: ['coffee']
-          }, callback);
+          searchCoffeeShops(service, newCenter);
         });
       });
     } else {
@@ -125,25 +123,24 @@ angular.module('brew.map', ['ui.bootstrap.datetimepicker'])
       infowindow = new google.maps.InfoWindow();
       var service = new google.maps.places.PlacesService(map);
 
-// filters out only coffee shops
-      service.textSearch({
-        location: santaMonica,
-        radius: 3000,
-        types: ['cafe', 'restaurant', 'food', 'store', 'establishment', 'meal_takeaway', 'point_of_interest'],
-        query: ['coffee']
-      }, callback);
+      // filters out only coffee shops
+      searchCoffeeShops(service, santaMonica);
 
       google.maps.event.addListener(map, 'dragend', function() {
         var newLng = map.center.lng() + .03;
         var newCenter = {lat: map.center.lat(), lng: newLng};
-        service.textSearch({
-          location: newCenter,
-          radius: 2000,
-          types: ['cafe', 'restaurant', 'food', 'store', 'establishment', 'meal_takeaway', 'point_of_interest'],
-          query: ['coffee']
-        }, callback);
+        searchCoffeeShops(service, newCenter);
       });
     }
+  }
+
+  function searchCoffeeShops(service, location) {
+    service.textSearch({
+      location: location,
+      radius: 2000,
+      types: ['cafe', 'restaurant', 'food', 'store', 'establishment', 'meal_takeaway', 'point_of_interest'],
+      query: ['coffee']
+    }, callback);
   }
 
 // initializes the map
