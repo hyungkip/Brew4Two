@@ -119,11 +119,11 @@ body {
 .cafeList {
   top: 42px;
   height: 94.5%;
-  width: 40%;
+  width: 33%;
   background-color: rgba(255,255,255,0.5);
   overflow: scroll;
-  position:absolute;
-  opacity:20%;
+  position: absolute;
+  opacity: 20%;
   z-index: 1;
   /*max-width: 500px;*/
   box-shadow: 2px 2px 2px lightgrey;
