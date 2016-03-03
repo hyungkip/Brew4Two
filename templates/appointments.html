@@ -64,7 +64,7 @@
         <td>{{hostAppt.day.split('T')[0]}}</td>
         <td>{{hostAppt.time}}</td>
         <td>
-          <button uib-myPopoverTemplate="dynamicPopover.templateUrl" popover-title="Guest Requests" type="button" class="btn btn-default">Show Guest Requests</button>
+          <button uib-popover-template="'./myPopoverTemplate.html'" popover-title="Guest Requests" type="button" class="btn btn-default" popover-trigger="mouseenter" popover-placement="right">Show Guest Requests</button>
         </td>
       </tr>
     </tbody>
