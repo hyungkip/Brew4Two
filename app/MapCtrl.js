@@ -112,7 +112,7 @@ angular.module('brew.map', ['ui.bootstrap.datetimepicker'])
 
         $scope.noLocation = false;
         var thisLoc = {lat: thislat, lng: thislng};
-        thisLoc.lng = thisLoc.lng - '.024';
+        thisLoc.lng = thisLoc.lng;
         map = new google.maps.Map(document.getElementById('map'), {
           center: thisLoc,
           zoom: 14
@@ -125,7 +125,7 @@ angular.module('brew.map', ['ui.bootstrap.datetimepicker'])
         searchCoffeeShops(service, thisLoc);
 
         google.maps.event.addListener(map, 'dragend', function() {
-          var newLng = map.center.lng() + .03;
+          var newLng = map.center.lng();
           var newCenter = {lat: map.center.lat(), lng: newLng};
           searchCoffeeShops(service, newCenter);
         });
@@ -145,7 +145,7 @@ angular.module('brew.map', ['ui.bootstrap.datetimepicker'])
       searchCoffeeShops(service, santaMonica);
 
       google.maps.event.addListener(map, 'dragend', function() {
-        var newLng = map.center.lng() + .03;
+        var newLng = map.center.lng();
         var newCenter = {lat: map.center.lat(), lng: newLng};
         searchCoffeeShops(service, newCenter);
       });
@@ -155,7 +155,7 @@ angular.module('brew.map', ['ui.bootstrap.datetimepicker'])
   function searchCoffeeShops(service, location) {
     service.textSearch({
       location: location,
-      radius: 2000,
+      radius: 1000,
       types: ['cafe', 'restaurant', 'food', 'store', 'establishment', 'meal_takeaway', 'point_of_interest'],
       query: ['coffee']
     }, listResults);
