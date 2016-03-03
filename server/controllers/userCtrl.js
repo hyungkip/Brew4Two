@@ -13,6 +13,9 @@ module.exports = {
     req.body.password = hash;
 
     db.users.find({username: username}, function(err, exists) {
+      if (exists.length) {
+
+      };
       if(!exists.length){
         db.users.insert(req.body, function(err, doc) {
           if(err){
