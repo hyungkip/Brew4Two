@@ -5,8 +5,9 @@ var app = angular.module('app', [
   'brew.cafelist',
   'ngRoute',
   'ngAnimate',
-  'ui.bootstrap.datetimepicker'
-]);
+  'ui.bootstrap.datetimepicker',
+  'angular-loading-bar'
+  ]);
 
 app.config(['$routeProvider', '$httpProvider', function($routeProvider){
   $routeProvider

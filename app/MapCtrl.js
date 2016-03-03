@@ -63,7 +63,7 @@ angular.module('brew.map', ['ui.bootstrap.datetimepicker'])
       infowindow.open(map, marker);
     });
 
-    if(place.photos !== undefined){
+    if(place.photos !== undefined) {
       coffeeShops.push(place);
     }
   }
@@ -73,7 +73,7 @@ angular.module('brew.map', ['ui.bootstrap.datetimepicker'])
     if (status === google.maps.places.PlacesServiceStatus.OK) {
       // clears the previous results
       $scope.coffeeShops = [];
-      
+
       // clears all previous markers
       for (var i = 0; i < markers.length; i++) {
         markers[i].setMap(null);
@@ -83,9 +83,9 @@ angular.module('brew.map', ['ui.bootstrap.datetimepicker'])
 
       for (var i = 0; i < results.length; i++) {
         createMarker(results[i]);
-        if(results[i].photos){
+        if(results[i].photos) {
           results[i]. shopImage = results[i].photos[0].getUrl({'maxWidth': 500, 'maxHeight': 500});
-        }else{
+        } else {
           results[i]. shopImage = results[i].icon;
         }
         $scope.coffeeShops.push(results[i]);
@@ -103,10 +103,10 @@ angular.module('brew.map', ['ui.bootstrap.datetimepicker'])
         thislat = position.coords.latitude;
         thislng = position.coords.longitude;
         $scope.hasLocation = true;
-        if(thislat === undefined){
+        if(thislat === undefined) {
           thislat = 43.8833;
         }
-        if(thislng === undefined){
+        if(thislng === undefined) {
           thislng = -79.2500;
         }
 
@@ -121,7 +121,7 @@ angular.module('brew.map', ['ui.bootstrap.datetimepicker'])
         infowindow = new google.maps.InfoWindow();
 
         var service = new google.maps.places.PlacesService(map);
-        
+
         searchCoffeeShops(service, thisLoc);
 
         google.maps.event.addListener(map, 'dragend', function() {
@@ -159,8 +159,10 @@ angular.module('brew.map', ['ui.bootstrap.datetimepicker'])
       types: ['cafe', 'restaurant', 'food', 'store', 'establishment', 'meal_takeaway', 'point_of_interest'],
       query: ['coffee']
     }, listResults);
+    $scope.contentLoading = false;
   }
 
 // initializes the map
-  initMap();
+initMap();
+$scope.contentLoading = true;
 });
