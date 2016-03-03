@@ -76,7 +76,7 @@ module.exports = {
     var secret = "brewed";
     var username = jwt.decode(currentUserId, secret).username;
     var appointment = req.body.appointment;
-    console.log("appointment in server side ", appointment);
+    // console.log("appointment in server side ", appointment);
     // var guestsArr = appointment.guests;
 
     // if(_.indexOf(username, guestsArr) === -1) {
@@ -98,13 +98,14 @@ module.exports = {
   },
 
   acceptAppt: function(req, res) {
-    db.appointments.update({time: req.body.time}, { $set: { appointmentStatus: 'scheduled', guests: [], acceptedGuest: req.body.username }}, function(err, appt){
+    console.log(req.body);
+    db.appointments.update({id: req.body.id}, { $set: { appointmentStatus: 'scheduled', guests: [], acceptedGuest: req.body.username }}, function(err, appt){
       res.send(true);
     });
   },
 
   denyAppt: function(req, res) {
-    db.appointments.update({time: req.body.time}, {appointmentStatus: 'pending'}, { $pullAll: { guests: [req.body.username] } }, function(err, appt){
+    db.appointments.update({id: req.body.id}, {appointmentStatus: 'pending'}, { $pullAll: { guests: [req.body.username] } }, function(err, appt){
       res.send(true);
     });
   }
