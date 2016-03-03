@@ -14,18 +14,19 @@ module.exports = {
     db.users.find({username: username}, function(err, exists) {
       if(!exists.length){
         db.users.insert(req.body, function(err, doc) {
-          if(err){
-            console.log('++line 19 inside userCtrl.js !exists.length',err);
-          }
+          console.log('++line 17 inside userCtrl.js upon user insertion', req.body);
+          // if(err){
+          //   console.log('++line 19 inside userCtrl.js !exists.length',err);
+          // }
         });
+          res.send('/signin');
       }
       else {
-        console.log('++line 24 inside userCtrl.js else');
-
+        console.log('++line 25 inside userCtrl.js else');
+        res.send(false);
       }
     });
 
-    res.send('/signin');
   },
 
   renderSignin: function(req, res) {
