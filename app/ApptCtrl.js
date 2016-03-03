@@ -10,7 +10,8 @@ angular.module('brew.appts', [])
 
   // clears the hosting appointments and re-invokes appointment filter when host accepts a guest
   $scope.accepted = function(appt, guestUsername) {
-    $http.post('/acceptAppt', {time: appt.time, username: guestUsername }).success(function(res) {
+    console.log(appt);
+    $http.post('/acceptAppt', {id: appt.id, username: guestUsername }).success(function(res) {
       if(res){
         $scope.hosting = [];
         $scope.filterAppointments();
@@ -20,7 +21,7 @@ angular.module('brew.appts', [])
 
   // clears the hosting appointments and re-invokes appointment filter when host denies a guest
   $scope.denied = function(appt, guestUsername) {
-    $http.post('/denyAppt', {time: appt.time, username: guestUsername }).success(function(res) {
+    $http.post('/denyAppt', {id: appt.id, username: guestUsername }).success(function(res) {
       if(res){
         $scope.hosting = [];
         $scope.filterAppointments();
