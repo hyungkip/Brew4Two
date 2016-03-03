@@ -17,7 +17,7 @@
         <div ng-click="toggleCoffeeShopAppointments(shop.id)" class="cafePreviewClick">
           <img class="coffeeShopImage" src={{shop.shopImage}}>
           <div class='coffeeShopInfo'>
-            <h1 class="coffeeShopName">{{shop.name}}</h1>
+            <h1 class="coffeeShopName">{{shop.name | limitTo: 30 }}</h1>
             <p class='coffeeShopAddress'>{{shop.formatted_address}} </p>
             <!-- <span ng-click="createNewAppointment(shop.id)" class="addAppointmentButton btn btn-success">add new</span> -->
           </div>
@@ -104,11 +104,9 @@
                 <div class="aboutHostHeader">
                   <h1 class="aboutHostTitle">About</h1>
                 </div>
-              <div>
                 <p class="hostBioText">{{appt.bio}}</p>
               </div>
             </div>
-          </div>
           </div>
 
         </div>
