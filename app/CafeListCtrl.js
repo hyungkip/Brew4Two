@@ -65,57 +65,69 @@ angular.module('brew.cafelist', [])
           // $scope.newAppointment.profilePicture = res.profilePicture;
           // $scope.newAppointment.bio = res.bio;
           // $scope.toggleCoffeeShopAppointments();
-          $http.post('/getAppointments', { id: shop.id }).success(function(res){
-            $scope.appointmentList = res;
-          });
+
+          if(req === true){
+            $http.post('/getAppointments', { id: shop.id }).success(function(res){
+              $scope.appointmentList = res;
+            });
+          }
+          else{
+            alert('You already have an appointment of that date and time!');
+          }
+
         });
       }
 
-      var formatDateProperly = function(date) {
-        date = $scope.newAppointment.day.split('-');
-        var months = { "01": "Jan", "02": "Feb", "03": "Mar", "04": "Apr", "05": "May", "06": "Jun", "07": "Jul", "08": "Aug", "09": "Sept", "10": "Oct", "11": "Nov", "12": "Dec" };
-        var year = date[0];
-        var month = months[date[1]];
-        var day = date[2];
+      var formatDateandTimeProperly = function(date) {
+        //BUG - date will display as one day before, so this line fixes it
+        appointmentDay.setDate(appointmentDay.getDate() + 1);
 
-        $scope.newAppointment.day = month + ' ' + day + ', ' + year + ' ';
+
+        var date = appointmentDay.toDateString();
+        $scope.newAppointment.day = date;
+
+        var time = $scope.newAppointment.timeee.toString();
+        if(time.indexOf('-') !== -1){
+          $scope.newAppointment.time = $scope.newAppointment.timeee.toLocaleTimeString(navigator.language, {hour: '2-digit', minute:'2-digit'});
+        }
+
+        // var months = { "01": "Jan", "02": "Feb", "03": "Mar", "04": "Apr", "05": "May", "06": "Jun", "07": "Jul", "08": "Aug", "09": "Sept", "10": "Oct", "11": "Nov", "12": "Dec" };
+        // var year = date[0];
+        // var month = months[date[1]];
+        // var day = date[2];
+
+        // $scope.newAppointment.day = month + ' ' + day + ', ' + year + ' ';
       };
-
-      //CONSTRUCTION ZONE-----------------------------------------------------------------
             var currentDay = new Date();
             var currentMonth = currentDay.getMonth();
             var currentYear = currentDay.getYear();
             var currentDate = currentDay.getDate();
-            var appointmentDay = new Date($scope.newAppointment.day);
+            var appointmentDay = new Date($scope.newAppointment.dayyy);
             var appointmentMonth = appointmentDay.getMonth();
             var appointmentYear = appointmentDay.getYear();
-            var appointmentDate = appointmentDay.getDate();
-            var temp_time = new Date($scope.newAppointment.time).setFullYear(1, 0, 1);
+            var appointmentDate = appointmentDay.getDate() + 1;
+            var temp_time = new Date($scope.newAppointment.timeee).setFullYear(1, 0, 1);
             var now = new Date().setFullYear(1, 0, 1);
+            console.log("HELLO");
             if (appointmentMonth === currentMonth && appointmentYear === currentYear && appointmentDate === currentDate) {
-              if (now > temp_time) {
+              if (now >= temp_time) {
                 console.log("DATE IS SAME, TIME IS INVALID");
                 alert("Pick a time that is in the future, not the past");
               }
               else {
                 console.log("DATE IS SAME, TIME IS VALID");
-                formatDateProperly();
+                formatDateandTimeProperly();
                 appointmentMaker();
               }
             }
             else if (appointmentMonth < currentMonth || appointmentYear < currentYear || (appointmentMonth === currentMonth && appointmentDate < currentDate)) {
-              console.log("LOLOLOL U SUCK");
               alert("Pick a time that is in the future, not the past");
             }
             else {
               console.log("VALIDDD");
-              formatDateProperly();
+              formatDateandTimeProperly();
               appointmentMaker();
             }
-
-      //CONSTRUCTION ZONE --------------------------------------------------------
-
-
     }
   };
 
