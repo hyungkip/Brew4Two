@@ -81,7 +81,6 @@ angular.module('brew.cafelist', [])
         $scope.newAppointment.day = month + ' ' + day + ', ' + year + ' ';
       };
 
-      //CONSTRUCTION ZONE-----------------------------------------------------------------
             var currentDay = new Date();
             var currentMonth = currentDay.getMonth();
             var currentYear = currentDay.getYear();
@@ -89,11 +88,13 @@ angular.module('brew.cafelist', [])
             var appointmentDay = new Date($scope.newAppointment.day);
             var appointmentMonth = appointmentDay.getMonth();
             var appointmentYear = appointmentDay.getYear();
-            var appointmentDate = appointmentDay.getDate();
+            var appointmentDate = appointmentDay.getDate() + 1;
             var temp_time = new Date($scope.newAppointment.time).setFullYear(1, 0, 1);
             var now = new Date().setFullYear(1, 0, 1);
+            console.log("HELLO");
+            debugger;
             if (appointmentMonth === currentMonth && appointmentYear === currentYear && appointmentDate === currentDate) {
-              if (now > temp_time) {
+              if (now >= temp_time) {
                 console.log("DATE IS SAME, TIME IS INVALID");
                 alert("Pick a time that is in the future, not the past");
               }
@@ -104,7 +105,6 @@ angular.module('brew.cafelist', [])
               }
             }
             else if (appointmentMonth < currentMonth || appointmentYear < currentYear || (appointmentMonth === currentMonth && appointmentDate < currentDate)) {
-              console.log("LOLOLOL U SUCK");
               alert("Pick a time that is in the future, not the past");
             }
             else {
@@ -112,10 +112,6 @@ angular.module('brew.cafelist', [])
               formatDateProperly();
               appointmentMaker();
             }
-
-      //CONSTRUCTION ZONE --------------------------------------------------------
-
-
     }
   };
 
