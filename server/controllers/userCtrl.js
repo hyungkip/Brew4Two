@@ -23,8 +23,7 @@ module.exports = {
       }
       else {
         console.log('++line 25 inside userCtrl.js else');
-        alert('User exists!');
-
+        res.send(false);
       }
     });
 
