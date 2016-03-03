@@ -52,21 +52,32 @@ module.exports = {
       for( var i = 0; i < doc.length; i++ ){
         // if user's username is in the appointments' "username" property, user is the host
         // case: user is a host or a guest and appointment status is scheduled = confirmed appointment
-        if ( (doc[i].username === username || _.contains(doc[i].guests, username) === true ) && doc[i].appointmentStatus === 'scheduled' || doc[i].acceptedGuest === username){
-          filteredAppointments.confirmed.push(doc[i]);
-        }
 
-        // case: user is the host
-        if(doc[i].username === username && doc[i].guests.length >= 0 && doc[i].appointmentStatus !== 'scheduled'){
-          filteredAppointments.hosting.push(doc[i]);
-        }
-
-        // case: user is not the host, and is a guest, and appointment status is pending = requested appointment
-        if(doc[i].username !== username && _.contains(doc[i].guests, username) === true && doc[i].appointmentStatus === 'pending'){
+        if(doc[i].username === username) {
+          if(doc[i].appointmentStatus === 'scheduled') {
+            filteredAppointments.confirmed.push(doc[i]);
+          } else {
+            filteredAppointments.hosting.push(doc[i]);
+          }
+        } else {
           filteredAppointments.requested.push(doc[i]);
         }
+        // if ( (doc[i].username === username || _.contains(doc[i].guests, username) === true ) && doc[i].appointmentStatus === 'scheduled' || doc[i].acceptedGuest === username){
+        //   filteredAppointments.confirmed.push(doc[i]);
+        // }
+        //
+        // // case: user is the host
+        // if(doc[i].username === username && doc[i].guests.length >= 0 && doc[i].appointmentStatus !== 'scheduled'){
+        //   filteredAppointments.hosting.push(doc[i]);
+        // }
+        //
+        // // case: user is not the host, and is a guest, and appointment status is pending = requested appointment
+        // if(doc[i].username !== username && _.contains(doc[i].guests, username) === true && doc[i].appointmentStatus === 'pending'){
+        //   filteredAppointments.requested.push(doc[i]);
+        // }
       }
 
+      console.log(filteredAppointments.requested);
       res.send(filteredAppointments);
     });
   },

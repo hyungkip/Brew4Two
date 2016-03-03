@@ -38,7 +38,7 @@
         <td>{{confirmAppt.acceptedGuest.email}}</td>
         <td>{{confirmAppt.shop.name}}</td>
         <td>{{confirmAppt.shop.formatted_address}}</td>
-        <td>{{moment().format(confirmAppt.day)}}</td>
+        <td>{{confirmAppt.day}}</td>
         <td>{{confirmAppt.time}}</td>
       </tr>
     </tbody>
@@ -113,12 +113,13 @@
       <th>Address</th>
       <th>Day</th>
       <th>Time</th>
+      <th>Appointment Status</th>
     </tr>
   </thead>
 
   <tbody>
     <tr ng-repeat="requestAppt in requested">
-      <td>{{requestAppt.profilePicture}}</td>
+      <td><img ng-src="{{requestAppt.profilePicture}}"/></td>
       <td>{{requestAppt.firstName}}</td>
       <td>{{requestAppt.lastName}}</td>
       <td>{{requestAppt.email}}</td>
