@@ -12,6 +12,10 @@ img{
   width: 40px;
 }
 
+.popover {
+  max-width: 700px;
+}
+
 .header {
   background-color: #F25F5C;
   width: 100%;
