@@ -59,7 +59,7 @@ module.exports = {
 
 
     db.appointments.find({}, function(err, doc){
-      console.log(doc);
+      // console.log(doc);
       for( var i = 0; i < doc.length; i++ ){
         // if user's username is in the appointments' "username" property, user is the host
         // case: user is a host or a guest and appointment status is scheduled = confirmed appointment

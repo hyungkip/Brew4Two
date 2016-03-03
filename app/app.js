@@ -6,7 +6,8 @@ var app = angular.module('app', [
   'ngRoute',
   'ngAnimate',
   'ui.bootstrap.datetimepicker',
-  'angular-loading-bar'
+  'angular-loading-bar',
+    'ui.bootstrap'
   ]);
 
 app.config(['$routeProvider', '$httpProvider', function($routeProvider){
