@@ -54,6 +54,7 @@ angular.module('brew.appts', [])
       $scope.confirmed = res.confirmed;
       $scope.hosting = res.hosting;
       $scope.requested = res.requested;
+      $scope.username = res.username;
     });
   };
 }]);

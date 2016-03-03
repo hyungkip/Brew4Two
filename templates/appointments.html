@@ -10,7 +10,7 @@
 <!-- page load fetches ALL appointments and filters out appts specific to user in the controller -->
 <div class="container appointmentsTable">
   <div class="appointmentsTableHeader">
-    <h1 ng-init="filterAppointments()" class="appointmentsTableTitle">Appointments</h1>
+    <h1 ng-init="filterAppointments()" class="appointmentsTableTitle">Welcome {{username}}, here are your appointments</h1>
   </div>
 
   <!-- loop over confirmed appointments (appts that user is either the host or guest and both parties have confirmed) -->
