@@ -44,15 +44,14 @@ angular.module('brew.cafelist', [])
 
 // checks if user is signed in
 // if so, this makes a new appointment in the appointments table
-  $scope.addNewAppointment = function(shopId, shop){
+  $scope.addNewAppointment = function(shop){
     var hostId = $window.localStorage.getItem('com.brewed');
-
     if(!hostId){
       $location.path('/signin');
     }
 
     else {
-      $scope.newAppointment.id = shopId;
+      $scope.newAppointment.id = shop.id;
       $scope.newAppointment.shop = shop;
       $scope.newAppointment.host_id = hostId;
       $scope.newAppointment.guest_id = null;
@@ -66,7 +65,7 @@ angular.module('brew.cafelist', [])
           // $scope.newAppointment.profilePicture = res.profilePicture;
           // $scope.newAppointment.bio = res.bio;
           // $scope.toggleCoffeeShopAppointments();
-          $http.post('/getAppointments', { id: shopId }).success(function(res){
+          $http.post('/getAppointments', { id: shop.id }).success(function(res){
             $scope.appointmentList = res;
           });
         });
