@@ -64,16 +64,14 @@
         <td>{{hostAppt.day.split('T')[0]}}</td>
         <td>{{hostAppt.time}}</td>
         <td>
-          <!-- <button class="btn btn-success btn-md">Show Guest Requests</button> -->
-          <!-- <div> <span custom-popover popover-html="Some Popover Text" popover-placement="bottom" popover-label="Label"></span></div> -->
-          <button uib-popover-template="dynamicPopover.templateUrl" popover-title="{{dynamicPopover.title}}" type="button" class="btn btn-default">Popover With Template</button>
-</td>
-</tr>
-</tbody>
-</table>
+          <button uib-myPopoverTemplate="dynamicPopover.templateUrl" popover-title="Guest Requests" type="button" class="btn btn-default">Show Guest Requests</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 
-<!-- <div>
-<h3>{{hostAppt.day}}</h3>
+  <!-- <div>
+  <h3>{{hostAppt.day}}</h3>
 </div> -->
 
 <!-- // loop over requested appointments (appts that user has requested to join but is not hosting) -->
