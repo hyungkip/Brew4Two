@@ -13,15 +13,17 @@ module.exports = {
     req.body.password = hash;
 
     db.users.find({username: username}, function(err, exists) {
-      if(!exists.length){
-        db.users.insert(req.body, function(err, doc) {
-          if(err){
-            console.log(err);
-          }
-        });
+      if(exists){
+        console.log("Username already exist.");
       }
       else {
-        console.log(err);
+        db.users.insert(req.body, function(err, doc) {
+         var token = jwt.encode(payload, secret);
+         res.send(token);
+         if(err){
+          console.log(err);
+        }
+      });
       }
     });
 
@@ -46,16 +48,16 @@ module.exports = {
           var payload = { username: username, password: password};
           var secret = 'brewed';
 
-          // encode token
-          var token = jwt.encode(payload, secret);
+// encode token
+var token = jwt.encode(payload, secret);
 
-          res.send(token);
-        }
-        else{
-          res.send(false);
-        }
+res.send(token);
+}
+else{
+  res.send(false);
+}
 
-      }
-    });
+}
+});
   }
 };
