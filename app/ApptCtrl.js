@@ -57,4 +57,10 @@ angular.module('brew.appts', [])
       $scope.username = res.username;
     });
   };
+
+  $scope.dynamicPopover = {
+    content: 'Hello, World!',
+    templateUrl: '../templates/myPopoverTemplate.html',
+    title: 'Title'
+  };
 }]);
