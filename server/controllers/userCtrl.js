@@ -9,19 +9,19 @@ module.exports = {
     var username = req.body.username;
 
     var salt = bcrypt.genSaltSync(10);
-    var hash = bcrypt.hashSync(password, salt);
-    req.body.password = hash;
+    req.body.password = bcrypt.hashSync(password, salt)
 
     db.users.find({username: username}, function(err, exists) {
       if(!exists.length){
         db.users.insert(req.body, function(err, doc) {
           if(err){
-            console.log(err);
+            console.log('++line 19 inside userCtrl.js !exists.length',err);
           }
         });
       }
       else {
-        console.log(err);
+        console.log('++line 24 inside userCtrl.js else');
+
       }
     });
 
@@ -37,13 +37,13 @@ module.exports = {
     var password = req.body.password;
 
     db.users.find({username: username}, function(err, exists) {
-      if(!exists.length){
+      if(!exists.length) {
         res.send(false);
       }
 
       else {
-        if(bcrypt.compareSync( password, exists[0].password)){
-          var payload = { username: username, password: password};
+        if(bcrypt.compareSync( password, exists[0].password)) {
+          var payload = {username: username, password: password};
           var secret = 'brewed';
 
           // encode token
