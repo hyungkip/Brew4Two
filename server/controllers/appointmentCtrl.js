@@ -76,6 +76,7 @@ module.exports = {
     var secret = "brewed";
     var username = jwt.decode(currentUserId, secret).username;
     var appointment = req.body.appointment;
+    console.log("appointment in server side ", appointment);
     // var guestsArr = appointment.guests;
 
     // if(_.indexOf(username, guestsArr) === -1) {
@@ -83,7 +84,7 @@ module.exports = {
     // } else {
       db.users.find({username: username}, function(err, userData) {
 
-        db.appointments.update({time: appointment.time}, { $set: { appointmentStatus: 'pending' }, $pushAll: { guests: userData } }, function(){
+        db.appointments.update({id: appointment.id}, { $set: { appointmentStatus: 'pending' }, $pushAll: { guests: userData } }, function(){
           res.send(false);
         });
       });
