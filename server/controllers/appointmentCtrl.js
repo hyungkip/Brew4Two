@@ -10,17 +10,27 @@ module.exports = {
     var secret = "brewed";
     var decoded = jwt.decode(token, secret);
 
-    // adds the below properties onto the request to post to appointments table
-    db.users.find( {username: decoded.username}, function(err, appt){
-      req.body.firstName = appt[0].first;
-      req.body.lastName = appt[0].last;
-      req.body.username = decoded.username;
-      req.body.profilePicture = appt[0].profilePicture;
-      req.body.bio = appt[0].bio;
-      db.appointments.insert(req.body, function(err, doc){
-        res.send(true);
-      });
+
+    db.appointments.find( {username: decoded.username, id: req.body.id, time: req.body.time, day: req.body.day}, function(err, found){
+      console.log(found);
+      if(found.length){
+        res.send(false);
+      }
+      else{
+        db.users.find( {username: decoded.username}, function(err, appt){
+          req.body.firstName = appt[0].first;
+          req.body.lastName = appt[0].last;
+          req.body.username = decoded.username;
+          req.body.profilePicture = appt[0].profilePicture;
+          req.body.bio = appt[0].bio;
+          db.appointments.insert(req.body, function(err, doc){
+            res.send(true);
+          });
+        });
+      }
     });
+    // adds the below properties onto the request to post to appointments table
+
   },
 
   getAppts: function(req, res) {
