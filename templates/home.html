@@ -6,8 +6,7 @@
 </ul>
 
 <div class='main-view' ng-app="brew.map" ng-controller="MapCtrl">
-
-
+  <img src="../app/assets/loading.gif" ng-if="contentLoading" class="loading">
   <div id="map"></div>
 
   <div class="cafeList">
@@ -63,7 +62,6 @@
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </div>

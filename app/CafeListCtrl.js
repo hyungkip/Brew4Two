@@ -20,33 +20,33 @@ angular.module('brew.cafelist', [])
     };
 
     // shows available coffee shop appointments in the left sidebar
-    $scope.toggleCoffeeShopAppointments = function(shopId){
+    $scope.toggleCoffeeShopAppointments = function(shopId) {
       $scope.selected = !$scope.selected;
-      $http.post('/getAppointments', { id: shopId }).success(function(res){
+      $http.post('/getAppointments', { id: shopId }).success(function(res) {
         $scope.appointmentList = res;
       });
     };
 
     // filter returns the appointmentStatus for everything except 'scheduled' ones
     // this is used to only show appointment statuses of null and pending handled in the ng-filter
-    $scope.statusFilter = function(apptStat){
-      if(apptStat !== 'scheduled'){
+    $scope.statusFilter = function(apptStat) {
+      if(apptStat !== 'scheduled') {
         return apptStat;
       }
     };
 
 
-    $scope.createNewAppointment = function(shopId){
-    if($scope.selected === false){
+    $scope.createNewAppointment = function(shopId) {
+    if($scope.selected === false) {
       $scope.toggleCoffeeShopAppointments(shopId);
     }
   };
 
 // checks if user is signed in
 // if so, this makes a new appointment in the appointments table
-  $scope.addNewAppointment = function(shop){
+  $scope.addNewAppointment = function(shop) {
     var hostId = $window.localStorage.getItem('com.brewed');
-    if(!hostId){
+    if(!hostId) {
       $location.path('/signin');
     }
 
@@ -58,7 +58,7 @@ angular.module('brew.cafelist', [])
       $scope.newAppointment.guests = [];
       $scope.newAppointment.appointmentStatus = null;
 
-      var appointmentMaker = function(){
+      var appointmentMaker = function() {
         $http.post('/createAppointment', $scope.newAppointment).success(function(req, res){
           // $scope.newAppointment.firstName = res.firstName;
           // $scope.newAppointment.firstName = res.lastName;
@@ -137,7 +137,7 @@ angular.module('brew.cafelist', [])
     var hostId = $window.localStorage.getItem('com.brewed');
     $http.post('/sendJoinRequest', { token: hostId, appointment: $scope.appointmentList[thisAppointment] }).success(function(joined){
 
-      if(!joined){
+      if(!joined) {
         swal({
           title: "Are you sure you want to join?",
           type: "",
@@ -145,7 +145,7 @@ angular.module('brew.cafelist', [])
           confirmButtonColor: "forestgreen",
           confirmButtonText: "Yes!",
           closeOnConfirm: false
-        }, function(){
+        }, function() {
           swal("Request sent!", "The host has recieved your request to join.", "success");
         });
       }
