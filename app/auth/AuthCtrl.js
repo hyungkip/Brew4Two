@@ -9,6 +9,7 @@ angular.module('brew.auth', [])
 
   // post request to server and sends user info taken from the signup page's ng-model
   $scope.signup = function(){
+    $scope.newUser.profilePicture = $scope.newUser.profilePicture || 'http://www.catnipcamera.com/wp-content/uploads/2012/03/DSCN7973-L.jpg';
     $http.post('/signup', $scope.newUser).success(function(response){
       $location.path('/signin');
     });

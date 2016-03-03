@@ -78,30 +78,16 @@ module.exports = {
     var appointment = req.body.appointment;
     var guestsArr = appointment.guests;
 
-    //attempting to add the entire user object to the appointment, as opposed to just the username
-    // if no guests in the guests array, add current user's username into the guest array
-    if(!guestsArr.length){
-      db.users.find(currentUserId, function(err, userData) {
-        db.appointments.update({time: appointment.time}, { $set: { appointmentStatus: 'pending' }, $push: { guests: userData } }, function(){
+    // if(_.indexOf(username, guestsArr) === -1) {
+    //   res.send(true);
+    // } else {
+      db.users.find({username: username}, function(err, userData) {
+
+        db.appointments.update({time: appointment.time}, { $set: { appointmentStatus: 'pending' }, $pushAll: { guests: userData } }, function(){
           res.send(false);
         });
       });
-    }
-
-    // if guests array has items, loop throug hand check if user's username is in there
-    else {
-      for(var i = 0; i < guestsArr.length; i++){
-        // if user's username is in the guest array, respond with true
-        if(guestsArr[i] === username){
-          res.send(true);
-        }
-      }
-
-
-      // if user's username is not in the guest array, respond with false
-      db.appointments.update({time: appointment.time}, { $set: { appointmentStatus: 'pending' }, $push: { guests: username } });
-      res.send(false);
-    }
+    // }
   },
 
   fetchDashboardData: function() {
@@ -110,13 +96,13 @@ module.exports = {
     });
   },
 
-  acceptAppt: function() {
+  acceptAppt: function(req, res) {
     db.appointments.update({time: req.body.time}, { $set: { appointmentStatus: 'scheduled', guests: [], acceptedGuest: req.body.username }}, function(err, appt){
       res.send(true);
     });
   },
 
-  denyAppt: function() {
+  denyAppt: function(req, res) {
     db.appointments.update({time: req.body.time}, {appointmentStatus: 'pending'}, { $pullAll: { guests: [req.body.username] } }, function(err, appt){
       res.send(true);
     });
