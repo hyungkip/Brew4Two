@@ -121,7 +121,7 @@ angular.module('brew.cafelist', [])
 
   // sweetalert pop-up box when joining appointments
   $scope.requestToJoin = function(thisAppointment) {
-    console.log("inside request to join in cafe list ctrl");
+    console.log("this is the appointment list item", $scope.appointmentList[thisAppointment]);
     var hostId = $window.localStorage.getItem('com.brewed');
     $http.post('/sendJoinRequest', { token: hostId, appointment: $scope.appointmentList[thisAppointment] }).success(function(joined){
 
