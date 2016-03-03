@@ -76,7 +76,7 @@ module.exports = {
     var secret = "brewed";
     var username = jwt.decode(currentUserId, secret).username;
     var appointment = req.body.appointment;
-    var guestsArr = appointment.guests;
+    // var guestsArr = appointment.guests;
 
     // if(_.indexOf(username, guestsArr) === -1) {
     //   res.send(true);
