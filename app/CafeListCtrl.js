@@ -112,23 +112,19 @@ angular.module('brew.cafelist', [])
             if (appointmentMonth === currentMonth && appointmentYear === currentYear && appointmentDate === currentDate) {
               if (now >= temp_time) {
                 console.log("DATE IS SAME, TIME IS INVALID");
-                debugger;
                 alert("Pick a time that is in the future, not the past");
               }
               else {
                 console.log("DATE IS SAME, TIME IS VALID");
-                debugger;
                 formatDateandTimeProperly();
                 appointmentMaker();
               }
             }
             else if (appointmentMonth < currentMonth || appointmentYear < currentYear || (appointmentMonth === currentMonth && appointmentDate < currentDate)) {
-              debugger;
               alert("Pick a time that is in the future, not the past");
             }
             else {
               console.log("VALIDDD");
-              debugger;
               formatDateandTimeProperly();
               appointmentMaker();
             }
