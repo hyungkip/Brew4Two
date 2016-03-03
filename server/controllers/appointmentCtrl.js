@@ -85,19 +85,26 @@ module.exports = {
     var secret = "brewed";
     var username = jwt.decode(currentUserId, secret).username;
     var appointment = req.body.appointment;
-    // console.log("appointment in server side ", appointment);
-    // var guestsArr = appointment.guests;
+    var guestsArr = appointment.guests;
+    
+    var isFound = false;
 
-    // if(_.indexOf(username, guestsArr) === -1) {
-    //   res.send(true);
-    // } else {
+    // check if the event's guestList includes the one who is trying to join
+    _.each(guestsArr, function(element) {
+      if (element.username === username) {
+        isFound = true;
+      }
+    });
+
+    if(!isFound) {
       db.users.find({username: username}, function(err, userData) {
-
         db.appointments.update({id: appointment.id}, { $set: { appointmentStatus: 'pending' }, $pushAll: { guests: userData } }, function(){
           res.send(false);
         });
       });
-    // }
+    } else {
+      res.send(true);
+    }
   },
 
   fetchDashboardData: function() {
