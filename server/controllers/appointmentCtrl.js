@@ -43,7 +43,8 @@ module.exports = {
     var filteredAppointments = {
       confirmed: [],
       hosting: [],
-      requested: []
+      requested: [],
+      username: username
     };
 
 
@@ -62,22 +63,9 @@ module.exports = {
         } else {
           filteredAppointments.requested.push(doc[i]);
         }
-        // if ( (doc[i].username === username || _.contains(doc[i].guests, username) === true ) && doc[i].appointmentStatus === 'scheduled' || doc[i].acceptedGuest === username){
-        //   filteredAppointments.confirmed.push(doc[i]);
-        // }
-        //
-        // // case: user is the host
-        // if(doc[i].username === username && doc[i].guests.length >= 0 && doc[i].appointmentStatus !== 'scheduled'){
-        //   filteredAppointments.hosting.push(doc[i]);
-        // }
-        //
-        // // case: user is not the host, and is a guest, and appointment status is pending = requested appointment
-        // if(doc[i].username !== username && _.contains(doc[i].guests, username) === true && doc[i].appointmentStatus === 'pending'){
-        //   filteredAppointments.requested.push(doc[i]);
-        // }
       }
 
-      console.log(filteredAppointments.requested);
+      // console.log(filteredAppointments.requested);
       res.send(filteredAppointments);
     });
   },
