@@ -71,14 +71,23 @@ angular.module('brew.cafelist', [])
         });
       }
 
-      var formatDateProperly = function(date) {
-        date = $scope.newAppointment.day.split('-');
-        var months = { "01": "Jan", "02": "Feb", "03": "Mar", "04": "Apr", "05": "May", "06": "Jun", "07": "Jul", "08": "Aug", "09": "Sept", "10": "Oct", "11": "Nov", "12": "Dec" };
-        var year = date[0];
-        var month = months[date[1]];
-        var day = date[2];
+      var formatDateandTimeProperly = function(date) {
+        //BUG - date will display as one day before, so this line fixes it
+        appointmentDay.setDate(appointmentDay.getDate() + 1);
+        var date = appointmentDay.toDateString();
+        $scope.newAppointment.day = date;
 
-        $scope.newAppointment.day = month + ' ' + day + ', ' + year + ' ';
+        var time = $scope.newAppointment.time.toString();
+        if(time.indexOf('-') !== -1){
+          $scope.newAppointment.time = $scope.newAppointment.time.toLocaleTimeString(navigator.language, {hour: '2-digit', minute:'2-digit'});
+        }
+
+        // var months = { "01": "Jan", "02": "Feb", "03": "Mar", "04": "Apr", "05": "May", "06": "Jun", "07": "Jul", "08": "Aug", "09": "Sept", "10": "Oct", "11": "Nov", "12": "Dec" };
+        // var year = date[0];
+        // var month = months[date[1]];
+        // var day = date[2];
+
+        // $scope.newAppointment.day = month + ' ' + day + ', ' + year + ' ';
       };
 
             var currentDay = new Date();
@@ -92,7 +101,6 @@ angular.module('brew.cafelist', [])
             var temp_time = new Date($scope.newAppointment.time).setFullYear(1, 0, 1);
             var now = new Date().setFullYear(1, 0, 1);
             console.log("HELLO");
-            debugger;
             if (appointmentMonth === currentMonth && appointmentYear === currentYear && appointmentDate === currentDate) {
               if (now >= temp_time) {
                 console.log("DATE IS SAME, TIME IS INVALID");
@@ -100,7 +108,7 @@ angular.module('brew.cafelist', [])
               }
               else {
                 console.log("DATE IS SAME, TIME IS VALID");
-                formatDateProperly();
+                formatDateandTimeProperly();
                 appointmentMaker();
               }
             }
@@ -109,7 +117,7 @@ angular.module('brew.cafelist', [])
             }
             else {
               console.log("VALIDDD");
-              formatDateProperly();
+              formatDateandTimeProperly();
               appointmentMaker();
             }
     }
