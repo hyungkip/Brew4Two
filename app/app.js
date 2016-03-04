@@ -6,6 +6,9 @@ var app = angular.module('app', [
   'ngRoute',
   'ngAnimate',
   'ui.bootstrap.datetimepicker',
+  'ngMaterial',
+  'ngAria',
+  'ngMessages',
   'angular-loading-bar',
     'ui.bootstrap'
   ]);
