@@ -17,6 +17,7 @@ module.exports = {
         db.users.find( {username: decoded.username}, function(err, appt){
           req.body.firstName = appt[0].first;
           req.body.lastName = appt[0].last;
+          req.body.email = appt[0].email;
           req.body.username = decoded.username;
           req.body.profilePicture = appt[0].profilePicture;
           req.body.bio = appt[0].bio;
