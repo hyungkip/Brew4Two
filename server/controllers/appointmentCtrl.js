@@ -10,13 +10,10 @@ module.exports = {
     var secret = "brewed";
     var decoded = jwt.decode(token, secret);
 
-
-    db.appointments.find( {username: decoded.username, id: req.body.id, time: req.body.time, day: req.body.day}, function(err, found){
-      console.log(found);
-      if(found.length){
+    db.appointments.find( { username: decoded.username, id: req.body.id, time: req.body.time, day: req.body.day }, function(err, found) {
+      if (found.length) {
         res.send(false);
-      }
-      else{
+      } else {
         db.users.find( {username: decoded.username}, function(err, appt){
           req.body.firstName = appt[0].first;
           req.body.lastName = appt[0].last;
@@ -29,8 +26,6 @@ module.exports = {
         });
       }
     });
-    // adds the below properties onto the request to post to appointments table
-
   },
 
   getAppts: function(req, res) {
@@ -39,7 +34,7 @@ module.exports = {
       id: req.body.id
     };
 
-    db.appointments.find(shopId, function(err, appts){
+    db.appointments.find(shopId, function(err, appts) {
       res.send(appts);
     });
   },
@@ -58,9 +53,9 @@ module.exports = {
     };
 
 
-    db.appointments.find({}, function(err, doc){
+    db.appointments.find({}, function(err, doc) {
       // console.log(doc);
-      for( var i = 0; i < doc.length; i++ ){
+      for (var i=0; i<doc.length; i++) {
         // if user's username is in the appointments' "username" property, user is the host
         // case: user is a host or a guest and appointment status is scheduled = confirmed appointment
 
@@ -85,19 +80,26 @@ module.exports = {
     var secret = "brewed";
     var username = jwt.decode(currentUserId, secret).username;
     var appointment = req.body.appointment;
-    // console.log("appointment in server side ", appointment);
-    // var guestsArr = appointment.guests;
+    var guestsArr = appointment.guests;
+    
+    var isFound = false;
 
-    // if(_.indexOf(username, guestsArr) === -1) {
-    //   res.send(true);
-    // } else {
-      db.users.find({username: username}, function(err, userData) {
+    // check if the event's guestList includes the one who is trying to join
+    _.each(guestsArr, function(element) {
+      if (element.username === username) {
+        isFound = true;
+      }
+    });
 
-        db.appointments.update({id: appointment.id}, { $set: { appointmentStatus: 'pending' }, $pushAll: { guests: userData } }, function(){
+    if(!isFound) {
+      db.users.find({ username: username }, function(err, userData) {
+        db.appointments.update({ id: appointment.id}, { $set: { appointmentStatus: 'pending' }, $pushAll: { guests: userData } }, function() {
           res.send(false);
         });
       });
-    // }
+    } else {
+      res.send(true);
+    }
   },
 
   fetchDashboardData: function() {
@@ -108,13 +110,13 @@ module.exports = {
 
   acceptAppt: function(req, res) {
     console.log(req.body);
-    db.appointments.update({id: req.body.id}, { $set: { appointmentStatus: 'scheduled', guests: [], acceptedGuest: req.body.username }}, function(err, appt){
+    db.appointments.update({id: req.body.id}, { $set: { appointmentStatus: 'scheduled', guests: [], acceptedGuest: req.body.username }}, function(err, appt) {
       res.send(true);
     });
   },
 
   denyAppt: function(req, res) {
-    db.appointments.update({id: req.body.id}, {appointmentStatus: 'pending'}, { $pullAll: { guests: [req.body.username] } }, function(err, appt){
+    db.appointments.update({id: req.body.id}, { appointmentStatus: 'pending'}, { $pullAll: { guests: [req.body.username] } }, function(err, appt) {
       res.send(true);
     });
   }
