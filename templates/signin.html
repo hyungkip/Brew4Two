@@ -4,23 +4,32 @@
     <div class="signin-box">
       <div class="modal-dialog">
         <div class="login-form modal-content">
-          <div class="modal-header">
+
 
             <h1 class="text-center login-logo">Brew4Two</h1>
-          </div>
-          <div class="modal-body">
+
             <form name="myForm" ng-submit="signin()" class="form col-md-12 center-block">
+              <md-input-container>
+                <label>Username</label>
+                <input type="text" name="username" class="input-lg" ng-model="user.username" required>
+                <div ng-messages="myForm.username.$error">
+                  <div ng-message="required">This is required.</div>
+                </div>
+              </md-input-container>
               <div class="form-group">
-                <input type="text" class="form-control input-lg" placeholder="Username" ng-model="user.username" required>
+                <md-input-container>
+                  <label>Password</label>
+                  <input type="text" name="password" class="input-lg" ng-model="user.password" required>
+                  <div ng-messages="myForm.password.$error">
+                    <div ng-message="required">This is required.</div>
+                  </div>
+                </md-input-container>
               </div>
-              <div class="form-group">
-                <input type="password" class="form-control input-lg" placeholder="Password" ng-model="user.password" required>              </div>
                 <div class="form-group">
                   <button type="submit" class="login-buttons btn btn-lg btn-block" ng-disabled="myForm.$invalid" >Sign In</button>
                   <button class="login-buttons btn btn-lg btn-block"><a href="#/signup">Sign Up</a></button>
                 </div>
               </form>
-            </div>
             <div class="modal-footer">
               <div class="col-md-12">
               </div>

@@ -8,6 +8,24 @@ background-size: cover;
 height: 100%;
 width: 100%;
 }*/
+
+md-input-container label {
+  color: #272727;
+}
+
+.login-logo {
+  font-size: 4.5em;
+  font-family: 'Kaushan Script', sans-serif;
+  color: #e74c3c;
+  margin-bottom: -5px;
+  text-shadow: 2px 2px 2px #000;
+}
+
+.signup-logo{
+  font-family: 'Kaushan Script', sans-serif;
+  font-size: 2.5em;
+}
+
 img{
   width: 40px;
 }
@@ -81,13 +99,7 @@ body {
   background-color: rgba(255,255,255,0.75);
 }
 
-.login-logo {
-  font-size: 4em;
-  font-family: 'Kaushan Script', sans-serif;
-  color: #e74c3c;
-  margin-bottom: -5px;
-  /*text-shadow: 2px 2px 2px #BF2415;*/
-}
+
 
 .login-buttons {
   margin-top: 10px;

@@ -3,163 +3,100 @@
   <div class='formcontainer'>
 
     <h1 class="text-center login-logo">Brew4Two</h1>
-    <h2 class="text-center ">Signup</h2>
+    <h2 class="text-center signup-logo">Signup</h2>
+
     <form name="myForm" ng-submit="signup()">
-      <div class="form-group col-md-6">
-        <label>Username</label>
-        <input type="text" class="form-control" ng-model="newUser.username" required>
+      <div class="col-md-6">
+        <md-input-container>
+          <label>Username</label>
+          <input required name="username" type="text" md-maxlength="30" ng-model="newUser.username">
+          <div ng-messages="myForm.username.$error">
+            <div ng-message="required">This is required.</div>
+          </div>
+        </md-input-container>
       </div>
-      <div class="form-group col-md-6">
-        <label >Password</label>
-        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" ng-model="newUser.password"required>
+      <div class="col-md-6">
+        <md-input-container>
+          <label>Password</label>
+          <input name="password" type="password" id="exampleInputPassword1" ng-model="newUser.password" required>
+          <div ng-messages="myForm.password.$error">
+            <div ng-message="required">This is required.</div>
+          </div>
+        </md-input-container>
       </div>
-      <div class="form-group col-md-6">
-        <label>First Name</label>
-        <input type="text" class="form-control" ng-model="newUser.first">
+      <div class="col-md-6">
+        <md-input-container>
+          <label>First Name</label>
+          <input name="firstname" type="text" ng-model="newUser.first" required>
+          <div ng-messages="myForm.firstname.$error">
+            <div ng-message="required">This is required.</div>
+          </div>
+        </md-input-container>
       </div>
-      <div class="form-group col-md-6">
-        <label>Last Name</label>
-        <input type="text" class="form-control" ng-model="newUser.last">
+      <div class="col-md-6">
+        <md-input-container>
+          <label>Last Name</label>
+          <input name="lastname" type="text" ng-model="newUser.last" required>
+          <div ng-messages="myForm.lastname.$error">
+            <div ng-message="required">This is required.</div>
+          </div>
+        </md-input-container>
       </div>
-      <div class="form-group col-md-6">
-        <label >Email Address</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email" ng-model="newUser.email">
-      </div>
-
-      <div class="form-group col-md-3">
-        <label>Age</label>
-        <select class="form-control" ng-model="newUser.age">
-
-        <option>18</option>
-        <option>19</option>
-        <option>20</option>
-        <option>21</option>
-        <option>22</option>
-        <option>23</option>
-        <option>24</option>
-        <option>25</option>
-        <option>26</option>
-        <option>27</option>
-        <option>28</option>
-        <option>29</option>
-        <option>30</option>
-        <option>31</option>
-        <option>32</option>
-        <option>33</option>
-        <option>34</option>
-        <option>35</option>
-        <option>36</option>
-        <option>37</option>
-        <option>38</option>
-        <option>39</option>
-        <option>40</option>
-        <option>41</option>
-        <option>42</option>
-        <option>43</option>
-        <option>44</option>
-        <option>45</option>
-        <option>46</option>
-        <option>47</option>
-        <option>48</option>
-        <option>49</option>
-        <option>40</option>
-        <option>41</option>
-        <option>42</option>
-        <option>43</option>
-        <option>44</option>
-        <option>45</option>
-        <option>46</option>
-        <option>47</option>
-        <option>48</option>
-        <option>49</option>
-        <option>50</option>
-        <option>51</option>
-        <option>52</option>
-        <option>53</option>
-        <option>54</option>
-        <option>55</option>
-        <option>56</option>
-        <option>57</option>
-        <option>58</option>
-        <option>59</option>
-        <option>60</option>
-        <option>61</option>
-        <option>62</option>
-        <option>63</option>
-        <option>64</option>
-        <option>65</option>
-        <option>66</option>
-        <option>67</option>
-        <option>68</option>
-        <option>69</option>
-        <option>70</option>
-        <option>71</option>
-        <option>72</option>
-        <option>73</option>
-        <option>74</option>
-        <option>75</option>
-        <option>76</option>
-        <option>77</option>
-        <option>78</option>
-        <option>79</option>
-        <option>80</option>
-        <option>81</option>
-        <option>82</option>
-        <option>83</option>
-        <option>84</option>
-        <option>85</option>
-        <option>86</option>
-        <option>87</option>
-        <option>88</option>
-        <option>89</option>
-        <option>90</option>
-        <option>91</option>
-        <option>92</option>
-        <option>93</option>
-        <option>94</option>
-        <option>95</option>
-        <option>96</option>
-        <option>97</option>
-        <option>98</option>
-        <option>99</option>
-        <option>100</option>
-        <option>101</option>
-        <option>102</option>
-        <option>103</option>
-        <option>104</option>
-        <option>105</option>
-        <option>106</option>
-        <option>107</option>
-        <option>108</option>
-        <option>109</option>
-        <option>110</option>
-
-
-        </select>
-      </div>
-      <div class="form-group col-md-3">
-        <label>Gender</label>
-        <select class="form-control"  ng-model="newUser.gender">
-        <option>Male</option>
-        <option>Female</option>
-        <option>Other</option>
-        </select>
-      </div>
-      <div class="form-group col-md-12">
+      <div class="col-md-5">
+        <md-input-container>
+          <label >Email Address</label>
+          <input name="email" type="email" id="exampleInputEmail1" ng-model="newUser.email" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/">
+          <div ng-messages="myForm.email.$error">
+              <div ng-message="pattern">Please enter a valid email address!</div>
+          </div>
+        </md-input-container>
+        <md-input-container>
         <label>Tell us about yourself...</label>
-        <textarea class="form-control" rows="3" ng-model="newUser.bio"></textarea>
+        <textarea rows="3" ng-model="newUser.bio"></textarea>
+      </md-input-container>
+
       </div>
-      <div class="form-group col-md-12">
-        <label>paste in a photo url of yourself</label>
-        <input type="text" class="form-control" placeholder="photo url" ng-model="newUser.profilePicture">
+
+      <div class="col-md-3">
+        <md-input-container>
+          <label>Age</label>
+          <input name="age" min="18" max="150" type="number" ng-model="newUser.age">
+          <div ng-messages="myForm.age.$error">
+              <div ng-message="min">You must be older than 18 years old to use this site!</div>
+              <div ng-message="max">Impossible. You can't be this old. I think.</div>
+          </div>
+
+        </md-input-container>
+
+
+      </div>
+      <div class="col-md-4">
+        <md-input-container>
+          <label>Gender:</label><br><br>
+          <md-radio-group ng-model="newUser.gender">
+            <md-radio-button value="Male">Male</md-radio-button>
+            <md-radio-button value="Female">Female</md-radio-button>
+            <md-radio-button value="Other">Other</md-radio-button>
+          </md-radio-group>
+        </md-input-container>
+      </div>
+
+      <div class="col-md-12">
+        <md-input-container>
+        <label>Photo url of yourself</label>
+        <input type="text" ng-model="newUser.profilePicture">
+      </md-input-container>
       </div>
 
         <button type="submit" class="btn btn-md btn-block login-buttons" ng-disabled="myForm.$invalid">Submit</button>
+
+
 
     </form>
   </div>
 </div>
 </div>
+
 
 <style>
 .bgimg{
