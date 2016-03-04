@@ -137,7 +137,7 @@ angular.module('brew.cafelist', [])
     var hostId = $window.localStorage.getItem('com.brewed');
     $http.post('/sendJoinRequest', { token: hostId, appointment: $scope.appointmentList[thisAppointment] })
       .success(function(joined) {
-        if(!joined){
+        if (!joined) {
           swal({
             title: "Are you sure you want to join?",
             type: "",
@@ -145,11 +145,10 @@ angular.module('brew.cafelist', [])
             confirmButtonColor: "forestgreen",
             confirmButtonText: "Yes!",
             closeOnConfirm: false
-          }, function(){
+          }, function() {
             swal("Request sent!", "The host has recieved your request to join.", "success");
           });
-        }
-        else {
+        } else {
           sweetAlert("Oops...", "You have already joined this appointment", "error");
         }
       });
