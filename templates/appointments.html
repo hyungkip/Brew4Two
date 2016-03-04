@@ -64,33 +64,41 @@
         <td>{{hostAppt.day.split('T')[0]}}</td>
         <td>{{hostAppt.time}}</td>
         <td>
-          <table class="table">
-            <thead>
-              <tr>
-                <th>Picture</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>email</th>
-                <th>Bio</th>
-                <th>Accept/Deny Request</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr ng-repeat="guest in hostAppt.guests track by $index">
-                <td><img ng-src="{{guest.profilePicture}}"/></td>
-                <td>{{guest.first}}</td>
-                <td>{{guest.last}}</td>
-                <td>{{guest.email}}</td>
-                <td>{{guest.bio}}</td>
-                <td>
-                  <div class="acceptDenyButton">
-                    <button class="accept" ng-click="accepted(hostAppt, guest)">Yes</button>
-                    <button class="deny" ng-click="denied(hostAppt, guest)">No</button>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+          <button uib-popover-template="'myPopoverTemplate.html'" popover-title="Guest Requests" type="button" class="btn btn-default" popover-placement="bottom">Show Guest Requests</button>
+
+
+          <script type="text/ng-template" id="myPopoverTemplate.html">
+          <div>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Picture</th>
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                  <th>email</th>
+                  <th>Bio</th>
+                  <th>Accept/Deny Request</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="guest in hostAppt.guests track by $index">
+                  <td><img ng-src="{{guest.profilePicture}}"/></td>
+                  <td>{{guest.first}}</td>
+                  <td>{{guest.last}}</td>
+                  <td>{{guest.email}}</td>
+                  <td>{{guest.bio}}</td>
+                  <td>
+                    <div class="acceptDenyButton">
+                      <button class="accept" ng-click="accepted(hostAppt, guest)">Yes</button>
+                      <button class="deny" ng-click="denied(hostAppt, guest)">No</button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          </script>
         </td>
       </tr>
     </tbody>
