@@ -76,7 +76,7 @@ angular.module('brew.cafelist', [])
           }
 
         });
-      }
+      };
 
       var formatDateandTimeProperly = function(date) {
         //BUG - date will display as one day before, so this line fixes it
