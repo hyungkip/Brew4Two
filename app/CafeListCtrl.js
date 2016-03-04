@@ -146,12 +146,12 @@ $scope.requestToJoin = function(thisAppointment) {
   }, function(isConfirm) {
     if (isConfirm) {
       $http.post('/sendJoinRequest', { token: hostId, appointment: $scope.appointmentList[thisAppointment] })
-      .success(function(joined){
-        if (joined) {
-          swal("Request sent!", "The host has recieved your request to join.", "success");
-        }
-        else {
+      .success(function(response){
+        if (response === true) {
           swal("Oops...", "You have already joined this appointment", "error");
+        }
+        if (response === false) {
+          swal("Request sent!", "The host has recieved your request to join.", "success");
         }
       })
     }
