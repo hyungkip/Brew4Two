@@ -92,7 +92,7 @@ module.exports = {
     });
 
     if(!isFound) {
-      db.users.find({username: username}, function(err, userData) {
+      db.users.find({ username: username }, function(err, userData) {
         db.appointments.update({ id: appointment.id}, { $set: { appointmentStatus: 'pending' }, $pushAll: { guests: userData } }, function() {
           res.send(false);
         });
