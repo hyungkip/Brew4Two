@@ -65,7 +65,7 @@ module.exports = {
           } else {
             filteredAppointments.hosting.push(doc[i]);
           }
-        } else {
+        } else if(doc[i].appointmentStatus === 'scheduled' || doc[i].appointmentStatus === 'pending'){
           filteredAppointments.requested.push(doc[i]);
         }
       }
@@ -81,7 +81,7 @@ module.exports = {
     var username = jwt.decode(currentUserId, secret).username;
     var appointment = req.body.appointment;
     var guestsArr = appointment.guests;
-    
+
     var isFound = false;
 
     // check if the event's guestList includes the one who is trying to join
@@ -116,7 +116,7 @@ module.exports = {
   },
 
   denyAppt: function(req, res) {
-    db.appointments.update({id: req.body.id}, { appointmentStatus: 'pending'}, { $pullAll: { guests: [req.body.username] } }, function(err, appt) {
+    db.appointments.update({id: req.body.id}, {appointmentStatus: 'denied'}, { $pullAll: { guests: [req.body.username] } }, function(err, appt){
       res.send(true);
     });
   }
