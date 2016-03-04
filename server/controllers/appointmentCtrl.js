@@ -70,7 +70,7 @@ module.exports = {
           } else {
             filteredAppointments.hosting.push(doc[i]);
           }
-        } else {
+        } else if(doc[i].appointmentStatus === 'scheduled' || doc[i].appointmentStatus === 'pending'){
           filteredAppointments.requested.push(doc[i]);
         }
       }
@@ -114,7 +114,7 @@ module.exports = {
   },
 
   denyAppt: function(req, res) {
-    db.appointments.update({id: req.body.id}, {appointmentStatus: 'pending'}, { $pullAll: { guests: [req.body.username] } }, function(err, appt){
+    db.appointments.update({id: req.body.id}, {appointmentStatus: 'denied'}, { $pullAll: { guests: [req.body.username] } }, function(err, appt){
       res.send(true);
     });
   }
