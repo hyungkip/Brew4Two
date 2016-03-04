@@ -1,8 +1,8 @@
 <ul class="header">
   <li class="logo pull-left"><a href="#/home">Brew4Two <span class="fa fa-coffee"></span></a></li>
-  <li class='pull-right links' ng-if='!isAuth()'><b href="#/signin">login</b></li>
-  <li class='pull-right links' ng-if='isAuth()'><b href="#" ng-click='signout()'>logout</b></li>
-  <li class='pull-right links' ><b href="#/appointments" ng-click='fetchAllAppointmentsForUser()'>dates</b></li>
+  <li class='pull-right links' ng-show='!isAuth()'><a href="#/signin">login</a></li>
+  <li class='pull-right links' ng-show='isAuth()'><a href="#" ng-click='signout()'>logout</a></li>
+  <li class='pull-right links' ><a href="#/appointments" ng-click='fetchAllAppointmentsForUser()'>dates</a></li>
 </ul>
 
 <div class='main-view' ng-app="brew.map" ng-controller="MapCtrl">
