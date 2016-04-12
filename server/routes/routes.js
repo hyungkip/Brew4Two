@@ -1,11 +1,9 @@
 var jsonParser = require('body-parser').json();
-
 var userController = require('../controllers/userCtrl.js');
 var apptController = require('../controllers/appointmentCtrl.js');
 
 module.exports = function(app, express) {
   app.use(jsonParser);
-
   app.use('/', express.static(__dirname + './../../'));
 
 //appointments controller
@@ -21,6 +19,5 @@ module.exports = function(app, express) {
   app.post('/signup', jsonParser, userController.signup);
   app.get('/signin', jsonParser, userController.renderSignin);
   app.post('/signin', jsonParser, userController.signin);
-
 
 };

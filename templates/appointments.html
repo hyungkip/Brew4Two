@@ -1,150 +1,150 @@
 <!-- nav bar links  -->
-<!-- <script src='accordionAnimation.js'></script> -->
-<ul class="header">
-  <li class='logo pull-left'><a href="#/home">Brew4Two <span class="fa fa-coffee"></span></a></li>
-  <li class="pull-right links"><a href="#" ng-click='signout()'>logout</a></li>
-  <li class="pull-right links"><a href="#/appointments"> dates</a></li>
-</ul>
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<ul class="header">
+		<li class='logo pull-left'>
+			<a href="#/home">Brew4Two <span class="fa fa-coffee"></span></a>
+		</li>
+		<li class="pull-right links">
+			<a href="#">logout</a>
+		</li>
+		<li class="pull-right links">
+			<a href="#/appointments">dates</a>
+		</li>
+	</ul>
 
-<!-- page header -->
-<!-- page load fetches ALL appointments and filters out appts specific to user in the controller -->
-<div class="container appointmentsTable">
-  <div class="appointmentsTableHeader">
-    <h1 ng-init="filterAppointments()" class="appointmentsTableTitle">Welcome {{username}}, here are your appointments</h1>
-  </div>
+	<!-- page header -->
+	<!-- page load fetches ALL appointments and filters out appts specific to user in the controller -->
+	<div class="container appointmentsTable">
+		<div class="appointmentsTableHeader">
+			<h1 class="appointmentsTableTitle">Welcome {{username}}, here are your
+			appointments</h1>
+		</div>
 
-  <!-- loop over confirmed appointments (appts that user is either the host or guest and both parties have confirmed) -->
-  <h1 class="appointmentsTableSubTitle">Guests Confirmed for my Appointments</h1>
+		<!-- loop over confirmed appointments (appts that user is either the host or guest and both parties have confirmed) -->
+		<h1 class="appointmentsTableSubTitle">Guests Confirmed for my
+		Appointments</h1>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Guest Picture</th>
+					<th>First Name</th>
+					<th>Last Name</th>
+					<th>Guest Email</th>
+					<th>Location</th>
+					<th>Address</th>
+					<th>Day</th>
+					<th>Time</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><img></td>
+					<td>{{confirmAppt.acceptedGuest.first}}</td>
+					<td>{{confirmAppt.acceptedGuest.last}}</td>
+					<td>{{confirmAppt.acceptedGuest.email}}</td>
+					<td>{{confirmAppt.shop.name}}</td>
+					<td>{{confirmAppt.shop.formatted_address}}</td>
+					<td>{{confirmAppt.day}}</td>
+					<td>{{confirmAppt.time}}</td>
+				</tr>
+			</tbody>
+		</table>
 
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Guest Picture</th>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Guest Email</th>
-        <th>Location</th>
-        <th>Address</th>
-        <th>Day</th>
-        <th>Time</th>
-      </tr>
-    </thead>
+		<!-- // loop over hosted appointments (appts that user has created) -->
+		<h1 class="appointmentsTableSubTitle">Guests that Want to Join My Events</h1>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Location</th>
+					<th>Address</th>
+					<th>Day</th>
+					<th>Time</th>
+					<th>Guests</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>{{hostAppt.shop.name}}</td>
+					<td>{{hostAppt.shop.formatted_address}}</td>
+					<td>{{hostAppt.day.split('T')[0]}}</td>
+					<td>{{hostAppt.time}}</td>
+					<td>
+						<button class="btn btn-default" type="button">{{hostAppt.guests.length}}
+						<span>Request</span><span>Requests</span> to Join</button>
+						<script id="myPopoverTemplate.html" type="text/ng-template">
+						</script>
+						<div>
+							<table class="table">
+								<thead>
+									<tr>
+										<th>Picture</th>
+										<th>First Name</th>
+										<th>Last Name</th>
+										<th>Age</th>
+										<th>email</th>
+										<th>Bio</th>
+										<th>Accept/Deny Request</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><img></td>
+										<td>{{guest.first}}</td>
+										<td>{{guest.last}}</td>
+										<td>{{guest.age}}</td>
+										<td>{{guest.email}}</td>
+										<td>{{guest.bio}}</td>
+										<td>
+											<div class="acceptDenyButton">
+												<button class="accept">Yes</button> <button class=
+												"deny">No</button>
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
 
-    <tbody>
-      <tr ng-repeat="confirmAppt in confirmed">
-        <td><img ng-src="{{confirmAppt.acceptedGuest.profilePicture}}"/></td>
-        <td>{{confirmAppt.acceptedGuest.first}}</td>
-        <td>{{confirmAppt.acceptedGuest.last}}</td>
-        <td>{{confirmAppt.acceptedGuest.email}}</td>
-        <td>{{confirmAppt.shop.name}}</td>
-        <td>{{confirmAppt.shop.formatted_address}}</td>
-        <td>{{confirmAppt.day}}</td>
-        <td>{{confirmAppt.time}}</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <!-- // loop over hosted appointments (appts that user has created) -->
-  <h1 class="appointmentsTableSubTitle">Guests that Want to Join My Events</h1>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Location</th>
-        <th>Address</th>
-        <th>Day</th>
-        <th>Time</th>
-        <th>Guests</th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <tr ng-repeat="hostAppt in hosting">
-        <td>{{hostAppt.shop.name}}</td>
-        <td>{{hostAppt.shop.formatted_address}}</td>
-        <td>{{hostAppt.day.split('T')[0]}}</td>
-        <td>{{hostAppt.time}}</td>
-        <td>
-          <button uib-popover-template="'myPopoverTemplate.html'" popover-title="Guest Requests" type="button" class="btn btn-default" popover-placement="bottom">{{hostAppt.guests.length}} <span ng-show="hostAppt.guests.length === 1">Request</span><span ng-show="hostAppt.guests.length !== 1">Requests</span> to Join</button>
-
-
-          <script type="text/ng-template" id="myPopoverTemplate.html">
-          <div>
-            <table class="table">
-              <thead>
-                <tr>
-                  <th>Picture</th>
-                  <th>First Name</th>
-                  <th>Last Name</th>
-                  <th>Age</th>
-                  <th>email</th>
-                  <th>Bio</th>
-                  <th>Accept/Deny Request</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr ng-repeat="guest in hostAppt.guests track by $index">
-                  <td><img ng-src="{{guest.profilePicture}}"/></td>
-                  <td>{{guest.first}}</td>
-                  <td>{{guest.last}}</td>
-                  <td>{{guest.age}}</td>
-                  <td>{{guest.email}}</td>
-                  <td>{{guest.bio}}</td>
-                  <td>
-                    <div class="acceptDenyButton">
-                      <button class="accept" ng-click="accepted(hostAppt, guest)">Yes</button>
-                      <button class="deny" ng-click="denied(hostAppt, guest)">No</button>
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          </script>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-
-  <!-- <div>
-  <h3>{{hostAppt.day}}</h3>
-</div> -->
-
-<!-- // loop over requested appointments (appts that user has requested to join but is not hosting) -->
-<h1 class="appointmentsTableSubTitle">Appointments I Have Requested To Join</h1>
-<table class="table">
-  <thead>
-    <tr>
-      <th>Host Picture</th>
-      <th>First Name</th>
-      <th>Last Name</th>
-      <th>Host Email</th>
-      <th>Location</th>
-      <th>Address</th>
-      <th>Day</th>
-      <th>Time</th>
-      <th>Appointment Status</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr ng-repeat="requestAppt in requested">
-      <td><img ng-src="{{requestAppt.profilePicture}}"/></td>
-      <td>{{requestAppt.firstName}}</td>
-      <td>{{requestAppt.lastName}}</td>
-      <td>{{requestAppt.email}}</td>
-      <td>{{requestAppt.shop.name}}</td>
-      <td>{{requestAppt.shop.formatted_address}}</td>
-      <td>{{requestAppt.day.split('T')[0]}}</td>
-      <td>{{requestAppt.time}}</td>
-      <td>{{requestAppt.appointmentStatus}}</td>
-    </tr>
-  </tbody>
-</table>
-
-</div>
-<!-- <div>
-<h3>{{requestAppt.time}}</h3>
-</div> -->
-
-</div>
+		<!-- // loop over requested appointments (appts that user has requested to join but is not hosting) -->
+		<h1 class="appointmentsTableSubTitle">Appointments I Have Requested To
+		Join</h1>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Host Picture</th>
+					<th>First Name</th>
+					<th>Last Name</th>
+					<th>Host Email</th>
+					<th>Location</th>
+					<th>Address</th>
+					<th>Day</th>
+					<th>Time</th>
+					<th>Appointment Status</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><img></td>
+					<td>{{requestAppt.firstName}}</td>
+					<td>{{requestAppt.lastName}}</td>
+					<td>{{requestAppt.email}}</td>
+					<td>{{requestAppt.shop.name}}</td>
+					<td>{{requestAppt.shop.formatted_address}}</td>
+					<td>{{requestAppt.day.split('T')[0]}}</td>
+					<td>{{requestAppt.time}}</td>
+					<td>{{requestAppt.appointmentStatus}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

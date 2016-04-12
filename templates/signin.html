@@ -1,61 +1,64 @@
 <!--login modal-->
-<div class="bgimg">
-  <div class="login">
-    <div class="signin-box">
-      <div class="modal-dialog">
-        <div class="login-form modal-content">
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<div class="bgimg">
+		<div class="login">
+			<div class="signin-box">
+				<div class="modal-dialog">
+					<div class="login-form modal-content">
+						<h1 class="text-center login-logo">Brew4Two</h1>
+						<form class="form col-md-12 center-block" id="myForm" name="myForm">
+							<label>Username</label> <input class="input-lg" name="username"
+							required="" type="text">
+							<div>
+								<div>
+									This is required.
+								</div>
+							</div>
+							<div class="form-group">
+								<label>Password</label> <input class="input-lg" name="password"
+								required="" type="text">
+								<div>
+									<div>
+										This is required.
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<button class="login-buttons btn btn-lg btn-block" type="submit">Sign
+								In</button> <button class="login-buttons btn btn-lg btn-block"><a href=
+								"#/signup">Sign Up</a></button>
+							</div>
+						</form>
+						<div class="modal-footer">
+							<div class="col-md-12"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<style>
+	   .bgimg{
+	     background-image: url('../app/assets/coffee-date.jpg');
+	     background-repeat: no-repeat;
+	     background-size: cover;
+	     display: block;
+	     position: absolute;
+	     height:auto;
+	     bottom:0;
+	     top:0;
+	     left:0;
+	     right:0;
+	   }
 
-
-            <h1 class="text-center login-logo">Brew4Two</h1>
-
-            <form name="myForm" ng-submit="signin()" class="form col-md-12 center-block">
-              <md-input-container>
-                <label>Username</label>
-                <input type="text" name="username" class="input-lg" ng-model="user.username" required>
-                <div ng-messages="myForm.username.$error">
-                  <div ng-message="required">This is required.</div>
-                </div>
-              </md-input-container>
-              <div class="form-group">
-                <md-input-container>
-                  <label>Password</label>
-                  <input type="text" name="password" class="input-lg" ng-model="user.password" required>
-                  <div ng-messages="myForm.password.$error">
-                    <div ng-message="required">This is required.</div>
-                  </div>
-                </md-input-container>
-              </div>
-                <div class="form-group">
-                  <button type="submit" class="login-buttons btn btn-lg btn-block" ng-disabled="myForm.$invalid" >Sign In</button>
-                  <button class="login-buttons btn btn-lg btn-block"><a href="#/signup">Sign Up</a></button>
-                </div>
-              </form>
-            <div class="modal-footer">
-              <div class="col-md-12">
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-  <style>
-    .bgimg{
-      background-image: url('../app/assets/coffee-date.jpg');
-      background-repeat: no-repeat;
-      background-size: cover;
-      display: block;
-      position: absolute;
-      height:auto;
-      bottom:0;
-      top:0;
-      left:0;
-      right:0;
-    }
-
-    .signin-box {
-      margin-top: 15%;
-    }
-  </style>
+	   .signin-box {
+	     margin-top: 15%;
+	   }
+	</style>
+</body>
+</html>

@@ -1,118 +1,99 @@
-<div class="bgimg">
-<div class='signup_form'>
-  <div class='formcontainer'>
-
-    <h1 class="text-center login-logo">Brew4Two</h1>
-    <h2 class="text-center signup-logo">Signup</h2>
-
-    <form name="myForm" ng-submit="signup()">
-      <div class="col-md-6">
-        <md-input-container>
-          <label>Username</label>
-          <input required name="username" type="text" md-maxlength="30" ng-model="newUser.username">
-          <div ng-messages="myForm.username.$error">
-            <div ng-message="required">This is required.</div>
-          </div>
-        </md-input-container>
-      </div>
-      <div class="col-md-6">
-        <md-input-container>
-          <label>Password</label>
-          <input name="password" type="password" id="exampleInputPassword1" ng-model="newUser.password" required>
-          <div ng-messages="myForm.password.$error">
-            <div ng-message="required">This is required.</div>
-          </div>
-        </md-input-container>
-      </div>
-      <div class="col-md-6">
-        <md-input-container>
-          <label>First Name</label>
-          <input name="firstname" type="text" ng-model="newUser.first" required>
-          <div ng-messages="myForm.firstname.$error">
-            <div ng-message="required">This is required.</div>
-          </div>
-        </md-input-container>
-      </div>
-      <div class="col-md-6">
-        <md-input-container>
-          <label>Last Name</label>
-          <input name="lastname" type="text" ng-model="newUser.last" required>
-          <div ng-messages="myForm.lastname.$error">
-            <div ng-message="required">This is required.</div>
-          </div>
-        </md-input-container>
-      </div>
-      <div class="col-md-5">
-        <md-input-container>
-          <label >Email Address</label>
-          <input name="email" type="email" id="exampleInputEmail1" ng-model="newUser.email" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/">
-          <div ng-messages="myForm.email.$error">
-              <div ng-message="pattern">Please enter a valid email address!</div>
-          </div>
-        </md-input-container>
-        <md-input-container>
-        <label>Tell us about yourself...</label>
-        <textarea rows="3" ng-model="newUser.bio"></textarea>
-      </md-input-container>
-
-      </div>
-
-      <div class="col-md-3">
-        <md-input-container>
-          <label>Age</label>
-          <input name="age" min="18" max="150" type="number" ng-model="newUser.age">
-          <div ng-messages="myForm.age.$error">
-              <div ng-message="min">You must be older than 18 years old to use this site!</div>
-              <div ng-message="max">Impossible. You can't be this old. I think.</div>
-          </div>
-
-        </md-input-container>
-
-
-      </div>
-      <div class="col-md-4">
-        <md-input-container>
-          <label>Gender:</label><br><br>
-          <md-radio-group ng-model="newUser.gender">
-            <md-radio-button value="Male">Male</md-radio-button>
-            <md-radio-button value="Female">Female</md-radio-button>
-            <md-radio-button value="Other">Other</md-radio-button>
-          </md-radio-group>
-        </md-input-container>
-      </div>
-
-      <div class="col-md-12">
-        <md-input-container>
-        <label>Photo url of yourself</label>
-        <input type="text" ng-model="newUser.profilePicture">
-      </md-input-container>
-      </div>
-
-        <button type="submit" class="btn btn-md btn-block login-buttons" ng-disabled="myForm.$invalid">Submit</button>
-
-
-
-    </form>
-  </div>
-</div>
-</div>
-
-
-<style>
-.bgimg{
-  background-image: url('../app/assets/coffee-date.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
-  display: block;
-  position: absolute;
-  height:auto;
-  bottom:0;
-  top:0;
-  left:0;
-  right:0;
-}
-
-.signin-box {
-  margin-top: 15%;
-}
-</style>
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<div class="bgimg">
+		<div class='signup_form'>
+			<div class='formcontainer'>
+				<h1 class="text-center login-logo">Brew4Two</h1>
+				<h2 class="text-center signup-logo">Signup</h2>
+				<form id="myForm" name="myForm">
+					<div class="col-md-6">
+						<label>Username</label> <input name="username" required="" type="text">
+						<div>
+							<div>
+								This is required.
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<label>Password</label> <input id="exampleInputPassword1" name="password"
+						required="" type="password">
+						<div>
+							<div>
+								This is required.
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<label>First Name</label> <input name="firstname" required="" type=
+						"text">
+						<div>
+							<div>
+								This is required.
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<label>Last Name</label> <input name="lastname" required="" type="text">
+						<div>
+							<div>
+								This is required.
+							</div>
+						</div>
+					</div>
+					<div class="col-md-5">
+						<label>Email Address</label> <input id="exampleInputEmail1" name="email"
+						type="email">
+						<div>
+							<div>
+								Please enter a valid email address!
+							</div>
+						</div><label>Tell us about yourself...</label>
+						<textarea rows="3"></textarea>
+					</div>
+					<div class="col-md-3">
+						<label>Age</label> <input max="150" min="18" name="age" type="number">
+						<div>
+							<div>
+								You must be older than 18 years old to use this site!
+							</div>
+							<div>
+								Impossible. You can't be this old. I think.
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<label>Gender:</label><br>
+						<br>
+						Male Female Other
+					</div>
+					<div class="col-md-12">
+						<label>Photo url of yourself</label> <input type="text">
+					</div><button class="btn btn-md btn-block login-buttons" type=
+					"submit">Submit</button>
+				</form>
+			</div>
+		</div>
+	</div>
+	<style>
+    .bgimg{
+      background-image: url('../app/assets/coffee-date.jpg');
+      background-repeat: no-repeat;
+      background-size: cover;
+      display: block;
+      position: absolute;
+      height:auto;
+      bottom:0;
+      top:0;
+      left:0;
+      right:0;
+    }
+    .signin-box {
+     margin-top: 15%;
+    }
+	</style>
+</body>
+</html>

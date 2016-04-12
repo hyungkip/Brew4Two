@@ -1,141 +1,127 @@
-<ul class="header">
-  <li class="logo pull-left"><a href="#/home">Brew4Two <span class="fa fa-coffee"></span></a></li>
-  <li class='pull-right links' ng-show='!isAuth()'><a href="#/signin">login</a></li>
-  <li class='pull-right links' ng-show='isAuth()'><a href="#" ng-click='signout()'>logout</a></li>
-  <li class='pull-right links' ><a href="#/appointments" ng-click='fetchAllAppointmentsForUser()'>dates</a></li>
-</ul>
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<ul class="header">
+		<li class="logo pull-left">
+			<a href="#/home">Brew4Two <span class="fa fa-coffee"></span></a>
+		</li>
+		<li class='pull-right links'>
+			<a href="#/signin">login</a>
+		</li>
+		<li class='pull-right links'>
+			<a href="#">logout</a>
+		</li>
+		<li class='pull-right links'>
+			<a href="#/appointments">dates</a>
+		</li>
+	</ul>
+	<div class='main-view'>
+		<img class="loading" src="../app/assets/coffee.gif">
+		<div id="map"></div>
+		<div class="cafeList">
+			<div>
+				<div class="cafe">
+					<div class="cafePreviewClick">
+						<img class="coffeeShopImage" src="{{shop.shopImage}}">
+						<div class='coffeeShopInfo'>
+							<h1 class="coffeeShopName">{{shop.name | limitTo: 30 }}</h1>
+							<p class='coffeeShopAddress'>{{shop.formatted_address}}</p>
+						</div>
+					</div>
+					<div class="appointmentsDashboard">
+						<h3 class='appointmentsTitle'>Appointments</h3>
+						<div class="addNewAppointmentForm">
+							<button class="createNew" data-target="#myModal" data-toggle=
+							"modal">+</button>
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button class="close" data-dismiss="modal" type=
+										"button">&times;</button>
+										<h4 class="modal-title">Modal Header</h4>
+									</div>
+									<div class="modal-body">
+										<p>Some text in the modal.</p>
+									</div>
+									<div class="modal-footer">
+										<button class="btn btn-default" data-dismiss="modal" type=
+										"button">Close</button>
+									</div>
+								</div>
+							</div>
+						</div>
+						<form class="timeDayInput">
+							<div class="timeAndSubmitButtons">
+								<input class='time form-control-md' name="time" type="time">
+								<input name="coffeShopObject" value="{{shop}}"> <input class=
+								"submitButton" type="submit" value="Submit">
+							</div>
+						</form>
+					</div>
+					<div>
+						<div class="appointment">
+							<button class='joinButton'>join</button> <img class="hostProfilePicture"
+							src="{{appt.profilePicture}}">
+							<div class="appointmentData">
+								<p class="hostName">{{appt.firstName}} {{appt.lastName}}</p>
+								<p class="hostDateTime">{{appt.day}}</p>
+								<p class="hostDateTime">{{appt.time}}</p>
+							</div>
+							<div class="hostBio">
+								<div class="aboutHostHeader">
+									<h1 class="aboutHostTitle">About</h1>
+								</div>
+								<p class="hostBioText">{{appt.bio}}</p>
+							</div>
+						</div>
+					</div>
+				</div>
 
-<div class='main-view' ng-app="brew.map" ng-controller="MapCtrl">
-  <img src="../app/assets/coffee.gif" ng-if="contentLoading" class="loading">
-  <div id="map"></div>
+				<!-- Modal -->
+				<div class="modal" id="myModal" role="dialog">
+					<div class="modal-dialog">
 
-  <div class="cafeList">
-
-    <div ng-controller="cafeListCtrl" ng-repeat="shop in coffeeShops">
-      <div class="cafe" ng-mouseover="mouseOn(shop.id)" ng-mouseleave="mouseOff(shop.id)">
-        <div ng-click="toggleCoffeeShopAppointments(shop.id)" class="cafePreviewClick">
-          <img class="coffeeShopImage" src={{shop.shopImage}}>
-          <div class='coffeeShopInfo'>
-            <h1 class="coffeeShopName">{{shop.name | limitTo: 30 }}</h1>
-            <p class='coffeeShopAddress'>{{shop.formatted_address}} </p>
-            <!-- <span ng-click="createNewAppointment(shop.id)" class="addAppointmentButton btn btn-success">add new</span> -->
-          </div>
-        </div>
-        <div ng-show='selected' class="appointmentsDashboard" >
-          <h3 class='appointmentsTitle'>Appointments</h3>
-          <div ng-if="creatingAppointment" class="addNewAppointmentForm">
-            <!-- BUG BUG DATE PICKER DISAPPEARS AFTER SUBMITTING AND CLICKING CREATE NEW AGAIN-->
-            <button class="createNew" data-toggle="modal" data-target="#myModal" isOpen="false">+</button>
-
-
-
-
-
-
-
-            <!-- <div id="myModal" class="modal fade" role="dialog">
-              <div class="modal-dialog">
-
-
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Modal Header</h4>
-                  </div>
-                  <div class="modal-body">
-                    <p>Some text in the modal.</p>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                  </div>
-                </div>
-
-              </div>
-            </div> -->
-
-
-
-            <form class="timeDayInput">
-
-              <!-- <input ng-model="newAppointment.day" class='day col-md-4' type="date" name="date"> -->
-
-
-              <!-- <datetimepicker class="hour" data-ng-model="newAppointment.time"  data-datetimepicker-config="{ startView:'hour', minView:'hour' }"></datetimepicker> -->
-
-              <datetimepicker class="day" data-ng-model="newAppointment.dayyy"
-              data-datetimepicker-config="{ startView:'day', minView:'day', modelType: 'YYYY-MM-DD' }"></datetimepicker>
-              <div class="timeAndSubmitButtons">
-                <input ng-model="newAppointment.timeee" class='time form-control-md' type="time" name="time">
-
-
-                <input name="coffeShopObject" value={{shop}} ng-show="false">
-                <input ng-click='addNewAppointment(shop)' type="submit" value="Submit" class="submitButton">
-              </div>
-            </form>
-          </div>
-
-          <div ng-repeat="appt in appointmentList | filter:  {appointmentStatus: statusFilter(appt.appointmentStatus)}">
-            <div class="appointment" isOpen = 'false' ng-click='isOpen = !isOpen'>
-              <button class='joinButton' ng-click="requestToJoin($index)">join</button>
-              <img class="hostProfilePicture"src={{appt.profilePicture}}></img>
-              <div class="appointmentData">
-                <p class="hostName">{{appt.firstName}} {{appt.lastName}}</p>
-                <p class="hostDateTime">{{appt.day}}</p>
-                <p class="hostDateTime">{{appt.time}}</p>
-              </div>
-              <div  ng-show='isOpen' class="hostBio">
-                <div class="aboutHostHeader">
-                  <h1 class="aboutHostTitle">About</h1>
-                </div>
-                <p class="hostBioText">{{appt.bio}}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-
-
-
-
-        <!-- Modal -->
-        <div class="modal" id="myModal" role="dialog">
-          <div class="modal-dialog">
-
-            <!-- Modal content-->
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 style="color:red;"><span class="glyphicon glyphicon-lock"></span> Login</h4>
-              </div>
-              <div class="modal-body">
-                <form role="form">
-                  <div class="form-group">
-                    <label for="usrname"><span class="glyphicon glyphicon-user"></span> Username</label>
-                    <input type="text" class="form-control" id="usrname" placeholder="Enter email">
-                  </div>
-                  <div class="form-group">
-                    <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
-                    <input type="text" class="form-control" id="psw" placeholder="Enter password">
-                  </div>
-                  <div class="checkbox">
-                    <label><input type="checkbox" value="" checked>Remember me</label>
-                  </div>
-                  <button type="submit" class="btn btn-default btn-success btn-block"><span class="glyphicon glyphicon-off"></span> Login</button>
-                </form>
-              </div>
-              <div class="modal-footer">
-                <button type="submit" class="btn btn-default btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
-                <p>Not a member? <a href="#">Sign Up</a></p>
-                <p>Forgot <a href="#">Password?</a></p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-
-
-
-      </div>
-    </div>
-  </div>
-</div>
+						<!-- Modal content-->
+						<div class="modal-content">
+							<div class="modal-header">
+								<button class="close" data-dismiss="modal" type=
+								"button">&times;</button>
+								<h4 style="color:red;"><span class="glyphicon glyphicon-lock"></span>
+								Login</h4>
+							</div>
+							<div class="modal-body">
+								<form role="form">
+									<div class="form-group">
+										<label for="usrname"><span class="glyphicon glyphicon-user"></span>
+										Username</label> <input class="form-control" id="usrname"
+										placeholder="Enter email" type="text">
+									</div>
+									<div class="form-group">
+										<label for="psw"><span class="glyphicon glyphicon-eye-open"></span>
+										Password</label> <input class="form-control" id="psw" placeholder=
+										"Enter password" type="text">
+									</div>
+									<div class="checkbox">
+										<label><input checked type="checkbox" value="">Remember me</label>
+									</div><button class="btn btn-default btn-success btn-block" type=
+									"submit"><span class="glyphicon glyphicon-off"></span> Login</button>
+								</form>
+							</div>
+							<div class="modal-footer">
+								<button class="btn btn-default btn-default pull-left" data-dismiss=
+								"modal" type="submit"><span class="glyphicon glyphicon-remove"></span>
+								Cancel</button>
+								<p>Not a member? <a href="#">Sign Up</a></p>
+								<p>Forgot <a href="#">Password?</a></p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
