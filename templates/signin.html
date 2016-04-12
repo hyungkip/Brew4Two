@@ -1,51 +1,64 @@
 <!--login modal-->
-<div class="bgimg">
-  <div class="login">
-    <div class="signin-box">
-      <div class="modal-dialog">
-        <div class="login-form modal-content">
-          <div class="modal-header">
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<div class="bgimg">
+		<div class="login">
+			<div class="signin-box">
+				<div class="modal-dialog">
+					<div class="login-form modal-content">
+						<h1 class="text-center login-logo">Brew4Two</h1>
+						<form class="form col-md-12 center-block" id="myForm" name="myForm">
+							<label>Username</label> <input class="input-lg" name="username"
+							required="" type="text">
+							<div>
+								<div>
+									This is required.
+								</div>
+							</div>
+							<div class="form-group">
+								<label>Password</label> <input class="input-lg" name="password"
+								required="" type="text">
+								<div>
+									<div>
+										This is required.
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<button class="login-buttons btn btn-lg btn-block" type="submit">Sign
+								In</button> <button class="login-buttons btn btn-lg btn-block"><a href=
+								"#/signup">Sign Up</a></button>
+							</div>
+						</form>
+						<div class="modal-footer">
+							<div class="col-md-12"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<style>
+	   .bgimg{
+	     background-image: url('../app/assets/coffee-date.jpg');
+	     background-repeat: no-repeat;
+	     background-size: cover;
+	     display: block;
+	     position: absolute;
+	     height:auto;
+	     bottom:0;
+	     top:0;
+	     left:0;
+	     right:0;
+	   }
 
-            <h1 class="text-center login-logo">Brew4Two</h1>
-          </div>
-          <div class="modal-body">
-            <form class="form col-md-12 center-block">
-              <div class="form-group">
-                <input type="text" class="form-control input-lg" placeholder="Email" ng-model="user.email">
-              </div>
-              <div class="form-group">
-                <input type="password" class="form-control input-lg" placeholder="Password" ng-model="user.password">              </div>
-                <div class="form-group">
-                  <button class="login-buttons btn btn-lg btn-block" ng-click="signin()">Sign In</button>
-                  <button class="login-buttons btn btn-lg btn-block"><a href="#/signup">Sign Up</a></button>
-                </div>
-              </form>
-            </div>
-            <div class="modal-footer">
-              <div class="col-md-12">
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <style>
-  .bgimg{
-    background-image: url('http://media4.popsugar-assets.com/files/2013/12/19/815/n/1922283/6a73ebd3380b3639_AWOD_0-2/i/quaintest-coffee-date-weve-ever-seen.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    display: block;
-    position: absolute;
-    height:auto;
-    bottom:0;
-    top:0;
-    left:0;
-    right:0;
-  }
-
-  .signin-box {
-    margin-top: 15%;
-  }
-  </style>
+	   .signin-box {
+	     margin-top: 15%;
+	   }
+	</style>
+</body>
+</html>

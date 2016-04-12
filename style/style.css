@@ -1,13 +1,27 @@
-/** {
-  font-family: 'Roboto', sans-serif;
-}*/
-/*.container {
-  background-image: url('http://www.themodernman.com/wp-content/uploads/the-right-attitude-for-approaching-women-in-coffee-shops.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
-  height: 100%;
-  width: 100%;
-}*/
+md-input-container label {
+  color: #272727;
+}
+
+.login-logo {
+  font-size: 4.5em;
+  font-family: 'Kaushan Script', sans-serif;
+  color: #e74c3c;
+  margin-bottom: -5px;
+  text-shadow: 2px 2px 2px #000;
+}
+
+.signup-logo{
+  font-family: 'Kaushan Script', sans-serif;
+  font-size: 2.5em;
+}
+
+img{
+  width: 40px;
+}
+
+.popover {
+  max-width: 700px;
+}
 
 .header {
   background-color: #F25F5C;
@@ -16,7 +30,6 @@
   position: fixed;
   top: 0;
   z-index: 2;
-  /*box-shadow: 2px 2px 0 #5E5E5E;*/
 }
 
 .header a {
@@ -25,7 +38,6 @@
   padding: 25px;
   border-radius: 3px;
 }
-
 
 .logo {
   font-size: 2em;
@@ -47,19 +59,13 @@
   box-shadow: 2px 2px 2px #BF2415;
   border-radius: 3px;
 }
-/*.logo a:hover {
-  background-color: #e74c3c;
-}*/
-
 
 body {
   background-color: #B3D1FF;
   background-color: #F5F5F5;
   background-repeat: no-repeat;
   background-size: cover;
-
 }
-
 
 .signup_form {
   width: 50%;
@@ -69,21 +75,10 @@ body {
   border-radius: 30px;
 }
 
-.formcontainer {
-
-}
-
-
 .login-form {
   background-color: rgba(255,255,255,0.75);
 }
-.login-logo {
-  font-size: 4em;
-  font-family: 'Kaushan Script', sans-serif;
-  color: #e74c3c;
-  margin-bottom: -5px;
-  /*text-shadow: 2px 2px 2px #BF2415;*/
-}
+
 .login-buttons {
   margin-top: 10px;
   background-color: #e74c3c;
@@ -91,14 +86,17 @@ body {
   max-width: 100px;
   margin: auto;
 }
+
 .login-buttons:hover {
   color: white;
   text-decoration: none;
 }
+
 .login-buttons, a {
   color: white;
   text-decoration: none;
 }
+
 .login-buttons, a:hover {
   color: white;
   text-decoration: none;
@@ -117,15 +115,13 @@ body {
 .cafeList {
   top: 42px;
   height: 94.5%;
-  width: 40%;
+  width: 33%;
   background-color: rgba(255,255,255,0.5);
   overflow: scroll;
-  position:absolute;
-  opacity:20%;
+  position: absolute;
+  opacity: 20%;
   z-index: 1;
-  /*max-width: 500px;*/
   box-shadow: 2px 2px 2px lightgrey;
-
 }
 
 /************************ CAFE LIST VIEW STYLES **************************************/
@@ -135,7 +131,7 @@ body {
   margin: 10px 10%;
   background-color: rgba(255,255,255,.75);
   box-shadow: 2px 2px 2px lightgrey;
-  max-width: 600px;
+  max-width: 100%;
   border-radius: 3px;
 }
 
@@ -151,7 +147,6 @@ body {
   height: 120px;
   width: 150px;
   margin-right: 10px;
-  /*padding: 10px 10px;;*/
   object-fit: cover;
   float: left;
   border: none;
@@ -163,29 +158,27 @@ body {
   padding-top: 5px;
   margin-top: 2px;
   margin-left: 5px;
-  width: 400px;
+  width: 100%;
   height: 100%;
 }
 
 .coffeeShopName {
   float: left;
-  margin-top: 2px;
+  margin-top: 5px;
   font-weight: 300;
   font-size: 1.2em;
   width: 150px;
-  /*letter-spacing: 1.5px;*/
 }
 
 .coffeeShopAddress {
   float: left;
-  margin-top: -5px;
+  margin-top: 5px;
   line-height: normal;
   font-size: .8em;
   width: 150px;
 }
 
 /***************** Appointments ********************/
-
 .appointmentsDashboard {
   height: 550px;
   max-height: 600px;
@@ -198,7 +191,6 @@ body {
 }
 
 /*ACCORDION ANIMATION FOR APPOINTMENTS DASHBOARD*/
-
 .appointmentsDashboard.ng-hide-add,
 .appointmentsDashboard.ng-hide-remove {
   display: block !important;
@@ -215,14 +207,12 @@ body {
 }
 
 /* end animation */
-
 .appointmentsTitle {
   position: relative;
   margin: 0 auto;
   margin-top: 10px;
   text-align: center;
   font-weight: 300;
-  /*letter-spacing: 2px;*/
 }
 
 .appointment {
@@ -232,8 +222,6 @@ body {
   background-color: white;
   box-shadow: 2px 2px 2px lightgrey;
   border-radius: 3px;
-  /*border-bottom: 1px solid lightgrey;*/
-  /*z-index: 1;*/
 }
 
 .appointmentData {
@@ -257,27 +245,18 @@ body {
   padding-bottom: 5px;
   font-size: 1.7em;
   font-weight: 300;
-  /*padding-top: 5px;
-  margin-left: 5px;
-  float: left;*/
 }
 
 .hostDateTime {
   font-size: .8em;
-  /*margin-left: 5px;
-  float: left;*/
 }
 
 .hostBio {
-  /*border-top: 1px solid lightgrey;*/
   clear: both;
   height: 100%;
-  /*width: 100%;*/
   background-color: rgba(255,255,255,0.5);
-  /*line-height: 5pc;*/
 }
 .aboutHostHeader{
-  /*background-color: #EDEFED;*/
   width: 100%;
   border-top: 1px solid lightgrey;
 }
@@ -286,7 +265,6 @@ body {
   font-size: 1.3em;
   font-weight: 300;
   text-align: center;
-  /*margin-left: 85px;*/
 }
 .hostBioText {
   margin-left: 55px;
@@ -294,29 +272,8 @@ body {
   line-height: 17px;
 }
 
-/*.hostBio.ng-hide-add,
-.hostBio.ng-hide-remove {
-  display: block !important;
-  height: 0px;
-}
-.hostBio.ng-hide-remove.ng-hide-remove-active {
-  height: 100px;
-}
-.hostBio.ng-hide-add {
-  height: 200px;
-}
-.hostBio.ng-hide-add.ng-hide-add-active {
-  height: 0;
-}*/
-
-
-
-
-
-
 .addAppointmentButton {
   right: 0;
-  /*top: 0;*/
   float: right;
 }
 
@@ -324,39 +281,25 @@ body {
   margin: 10px 10%;
 }
 
-
-
-
-/*.day {
-  display: inline-block;
-  box-shadow: 2px 2px 2px lightgrey;
-  border: none;
-  height: 25px;
-}*/
-
 .createNew {
   background-color: #70C1B3;
-  /*letter-spacing: 1.2px;*/
   width: 40px;
   height: 40px;
   color: white;
   border: none;
   padding: 10px;
-  /*position: relative;*/
   margin: 0 auto;
   align-items: center;
   display: block;
   border-radius: 3px;
   box-shadow: 2px 2px 2px lightgrey;
 }
+
 .timeDayInput {
-  /*margin: auto;*/
   margin: 0 auto;
-  /*margin-left: 1em;*/
   display: inline-block;
-  /*width: 100%;*/
-  /*align-items: center;*/
 }
+
 .time {
   background-color: white;
   display: inline-block;
@@ -364,10 +307,8 @@ body {
   border: none;
   border-right: 1px solid lightgrey;
   height: 25px;
-  /*margin: 10px 10%;*/
   margin: 0 auto;
   margin-left: 20px;
-  /*float: left;*/
   width: 40%;
 }
 
@@ -382,41 +323,24 @@ body {
   box-shadow: 2px 2px 2px lightgrey;
   height: 25px;
   width: 50%;
-  /*margin: 10px 5px;*/
   margin: 0 auto;
 
   border-radius: 3px;
   display: inline-block;
-  /*float: left;*/
 }
 
 .timeAndSubmitButtons {
   margin: 0 auto;
   display: block;
   margin-left: 40px;
-  /*margin-left: 200px;*/
 }
 
-/*.addAppointmentButton:hover {
-  background-color: green;
-}*/
-
-/*.addAppointmentButton:active {
-  background-color: darkgreen;
-}*/
 .hostName {
   font-size: 1.5em;
   font-weight: 200;
 }
 
-.appointmentData {
-  /*float: left;*/
-  /*display: inline-block;*/
-  /*float: left;*/
-}
 .joinButton {
-  /*float: right;*/
-  /*margin:0;*/
   letter-spacing: 2px;
   display: inline-block;
   float: right;
@@ -427,19 +351,13 @@ body {
   color: white;
   border: none;
   vertical-align: middle;
-  /*overflow: hidden;*/
   border-top-right-radius: 3px;
   border-bottom-right-radius: 3px;
-
 }
 
 /***************** MAP INFO WINDOW STYLES**********************/
 .gm-style-iw {
   min-height: 120px;
-  /*border-bottom: 1px solid lightgrey;*/
-  /*margin: 10px 10%;*/
-  /*background-color: rgba(255,255,255,.75);*/
-  /*box-shadow: 2px 2px 2px lightgrey;*/
   max-width: 300px;
   border-radius: 3px;
 }
@@ -448,7 +366,6 @@ body {
   height: 140px;
   width: 150px;
   margin-right: 10px;
-
   object-fit: cover;
   float: left;
   border: none;
@@ -460,7 +377,6 @@ body {
   margin-top: 2px;
   font-weight: 400;
   font-size: 1.3em;
-  /*letter-spacing: 1.5px;*/
 }
 
 .gm-style-iw p {
@@ -472,8 +388,6 @@ body {
 .opening-hours {
   color: green;
 }
-
-
 
 /*NG ANIMATE PRACTICE*/
 
@@ -487,20 +401,13 @@ body {
   opacity:1;
 }
 
-
 .main-view {
   max-width: 100%;
   max-height: 700px;
   overflow: hidden;
 }
 
-
-
-
-
-
 /****** Appointments.html view ******/
-
 .appointmentsTable {
   margin-top: 70px;
   background-color: white;
@@ -509,6 +416,7 @@ body {
   padding-bottom: 100px;
   border: 1px solid lightgrey;
 }
+
 .appointmentsTableHeader {
   background-color: #EDEFED;
   width: inherit;
@@ -519,8 +427,8 @@ body {
   border-top-right-radius: 3px;
   border-top-left-radius: 3px;
   border: 1px solid lightgrey;
-
 }
+
 .appointmentsTableTitle {
   text-align: left;
   font-weight: 400;
@@ -530,6 +438,7 @@ body {
   margin-top: 12px;
   margin-left: 14px;
 }
+
 .appointmentsTableSubTitle {
   text-align: left;
   font-weight: 400;
@@ -554,6 +463,7 @@ body {
   color: white;
   margin-left: 10px;
 }
+
 .deny {
   width: 42px;
   height: 25px;
@@ -561,77 +471,83 @@ body {
   font-size: 12px;
   float:left;
   border: none;
-  /*margin: 1px;*/
   border-radius: none;
   border-top-right-radius: 3px;
   border-bottom-right-radius: 3px;
   background-color: #F25F5C;
   color: white;
-  /*margin-left: -10px;*/
 }
 
 .acceptDenyButton {
   width: 200px;
   clear: both;
 }
+
 thead {
   width: 100%;
   padding-left: 0px;
 }
+
 th {
   font-weight: 400;
   background-color: #EDEFED;
 }
 
 
-
- /*MEDIA QUERIES FOR MOBILE */
+/*MEDIA QUERIES FOR MOBILE */
 @media(max-width: 1000px) {
-  #map {
-    width: 100%;
-    height: 400px;
-    clear: both;
-    margin: auto;
-    margin-top: -10px;
-  }
-  .cafeList {
-    display: inline;
-    width: 100%;
-    height: 100%;
-    background-color: transparent;
-    box-shadow: none;
-    /*clear: both;*/
-    margin: auto;
-    margin-top:350px;
-    /*background-color: white;*/
-    overflow: visible;
-  }
-  .hostName {
-    font-size: 13px;
-  }
-  .hostDateTime {
-    font-size: 10px;
-  }
-  .appointmentsTable {
-    width: auto;
-    margin-top: 42px;
-  }
-  .appointmentsTableHeader {
-    margin-right: -5px;
-  }
-  /*.day {
-    margin-left: -30px;
-  }
-  .time {
-    margin-left: -30px;
-  }*/
-  .links {
-    width: 22%;
-    font-size: 12px;
-    padding: 0;
-    height: 30px;
-    vertical-align: middle;
-    padding-top: 6px;
-    float: left;
-  }
+#map {
+  width: 100%;
+  height: 400px;
+  clear: both;
+  margin: auto;
+  margin-top: -10px;
+}
+
+.cafeList {
+  display: inline;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  box-shadow: none;
+  margin: auto;
+  margin-top:350px;
+  overflow: visible;
+}
+
+.hostName {
+  font-size: 13px;
+}
+
+.hostDateTime {
+  font-size: 10px;
+}
+
+.appointmentsTable {
+  width: auto;
+  margin-top: 42px;
+}
+
+.appointmentsTableHeader {
+  margin-right: -5px;
+}
+
+.links {
+  width: 22%;
+  font-size: 12px;
+  padding: 0;
+  height: 30px;
+  vertical-align: middle;
+  padding-top: 6px;
+  float: left;
+}
+
+.loading {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-top: -95px;
+  margin-left: -55px;
+  width: 100px;
+  height: 100px;
 }
